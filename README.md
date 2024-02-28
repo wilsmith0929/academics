@@ -14,10 +14,10 @@
     - weekly_EFT.txt
     - weekly_provider_file.txt
 
-Compile flags (while in /cs-314-group-7-project/code/) : g++ -Wall -Werror -O2 -std=c++17 main.cpp -o ChocAnTerminal
-To run: ./ChocAnTerminal
+- Compile flags (while in /cs-314-group-7-project/code/) : g++ -Wall -Werror -O2 -std=c++17 main.cpp -o ChocAnTerminal
+- To run: ./ChocAnTerminal
 
-Cloning (via SSH):
-git clone git@gitlab.cecs.pdx.edu:wilsmith/cs-314-group-7-project.git
-Cloning (via HTTPS):
-git clone https://gitlab.cecs.pdx.edu/wilsmith/cs-314-group-7-project.git
+- Cloning (via SSH):
+    - git clone git@gitlab.cecs.pdx.edu:wilsmith/cs-314-group-7-project.git
+- Cloning (via HTTPS):
+    - git clone https://gitlab.cecs.pdx.edu/wilsmith/cs-314-group-7-project.git

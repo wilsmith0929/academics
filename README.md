@@ -29,6 +29,9 @@
 The following set of instructions must be done in (.../cs-314-group-7-project/code/):
 - To compile: make ChocAnTerminal
     - This will create an executable file called ChocAnTerminal using the Makefile in the /code/ directory
+    - If you're not in the right directory, you will get the following error:
+        - "make ChocAnTerminal
+        - make: *** No rule to make target `ChocAnTerminal'.  Stop."
 - To run the program: ./ChocAnTerminal
 -------------------
 

@@ -25,9 +25,12 @@
 - README.md
 - .gitignore
 
+-------------------
+The following set of instructions must be done in (.../cs-314-group-7-project/code/):
 - To compile: make ChocAnTerminal
     - This will create an executable file called ChocAnTerminal using the Makefile in the /code/ directory
 - To run: ./ChocAnTerminal
+-------------------
 
 - Cloning (via SSH):
     - git clone git@gitlab.cecs.pdx.edu:wilsmith/cs-314-group-7-project.git

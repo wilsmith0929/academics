@@ -1,17 +1,21 @@
 /cs-314-group-7-project
 - /code/
-    - ChocAn.h
-    - manager.cpp
-    - provider.cpp
-    - member.cpp
-    - service.cpp
     - interface.cpp
+    - interface.h
+    - manager.cpp
+    - manager.h
+    - member.cpp
+    - member.h
+    - provider.cpp
+    - provider.h
+    - service.cpp
+    - service.h
     - main.cpp
 - /text-documents/
     - member_details.txt
     - provider_details.txt
     - provider_directory.txt
-    - services_provider.txt
+    - services_provided.txt
     - weekly_EFT.txt
     - weekly_provider_file.txt
 

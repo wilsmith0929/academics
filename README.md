@@ -1,6 +1,6 @@
 /cs-314-group-7-project
 - /code/
-    - /obj-files/
+    - /obj-files/ (Created by Makefile when compiling)
         - All .o files (created by g++ compiler via Makefile)
     - interface.cpp
     - interface.h
@@ -14,6 +14,7 @@
     - provider.h
     - service.cpp
     - service.h
+    - utilities.h
 - /text-documents/
     - member_details.txt
     - provider_details.txt

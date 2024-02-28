@@ -1,0 +1,8 @@
+# Ignore object files
+*.o
+
+# Ignore the obj_files directory
+obj_files/
+
+# Ignore the ChocAnTerminal executable
+ChocAnTerminal

@@ -1,5 +1,4 @@
-#include "ChocAn.h"
-
+#include "interface.h"
 
 int main() {
     cout << "Welcome to ChocAn!" << endl;

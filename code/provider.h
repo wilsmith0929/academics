@@ -3,6 +3,7 @@
 #include <string>
 using namespace std;
 
+#include "service.h"
 
 class Provider {
     public:

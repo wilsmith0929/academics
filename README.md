@@ -1,7 +1,11 @@
 /cs-314-group-7-project
 - /code/
+    - /obj-files/
+        - All .o files (created by g++ compiler via Makefile)
     - interface.cpp
     - interface.h
+    - main.cpp
+    - Makefile
     - manager.cpp
     - manager.h
     - member.cpp
@@ -10,7 +14,6 @@
     - provider.h
     - service.cpp
     - service.h
-    - main.cpp
 - /text-documents/
     - member_details.txt
     - provider_details.txt
@@ -18,8 +21,11 @@
     - services_provided.txt
     - weekly_EFT.txt
     - weekly_provider_file.txt
+- README.md
+- .gitignore
 
-- Compile flags (while in /cs-314-group-7-project/code/) : g++ -Wall -Werror -O2 -std=c++17 main.cpp -o ChocAnTerminal
+- To compile: make ChocAnTerminal
+    - This will create an executable file called ChocAnTerminal using the Makefile in the /code/ directory
 - To run: ./ChocAnTerminal
 
 - Cloning (via SSH):

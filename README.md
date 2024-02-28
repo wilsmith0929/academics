@@ -1,11 +1,11 @@
-- /cs-314-group-7-project
-    - /code/
-        - ChocAn.h
-        - manager.cpp
-        - provider.cpp
-        - service.cpp
-        - interface.cpp
-        - main.cpp
+/cs-314-group-7-project
+- /code/
+    - ChocAn.h
+    - manager.cpp
+    - provider.cpp
+    - service.cpp
+    - interface.cpp
+    - main.cpp
 - /text-documents/
     - member_details.txt
     - provider_details.txt
@@ -16,3 +16,8 @@
 
 Compile flags (while in /cs-314-group-7-project/code/) : g++ -Wall -Werror -O2 -std=c++17 main.cpp -o ChocAnTerminal
 To run: ./ChocAnTerminal
+
+Cloning (via SSH):
+git clone git@gitlab.cecs.pdx.edu:wilsmith/cs-314-group-7-project.git
+Cloning (via HTTPS):
+git clone https://gitlab.cecs.pdx.edu/wilsmith/cs-314-group-7-project.git

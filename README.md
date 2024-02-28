@@ -1,6 +1,6 @@
-/cs-314-group-7-project
-- /code/
-    - /obj-files/ (Created by Makefile when compiling)
+/cs-314-group-7-project/
+- code/
+    - obj-files/ (Created by Makefile when compiling, will not be present in the repository because of the .gitignore file)
         - All .o files (created by g++ compiler via Makefile)
     - interface.cpp
     - interface.h
@@ -15,7 +15,7 @@
     - service.cpp
     - service.h
     - utilities.h
-- /text-documents/
+- text-documents/
     - member_details.txt
     - provider_details.txt
     - provider_directory.txt
@@ -23,13 +23,13 @@
     - weekly_EFT.txt
     - weekly_provider_file.txt
 - README.md
-- .gitignore
+- .gitignore (Ignores the obj-files/ directory, all .o files in the /code/ directory, and the ChocAnTerminal executable file in the /code/ directory)
 
 -------------------
 The following set of instructions must be done in (.../cs-314-group-7-project/code/):
 - To compile: make ChocAnTerminal
     - This will create an executable file called ChocAnTerminal using the Makefile in the /code/ directory
-- To run: ./ChocAnTerminal
+- To run the program: ./ChocAnTerminal
 -------------------
 
 - Cloning (via SSH):

@@ -3,6 +3,7 @@
     - ChocAn.h
     - manager.cpp
     - provider.cpp
+    - member.cpp
     - service.cpp
     - interface.cpp
     - main.cpp

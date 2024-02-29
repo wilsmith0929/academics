@@ -2,12 +2,14 @@
 #include "manager.h"
 #include "provider.h"
 #include "member.h"
+#include "utilities.h"
 
 void display_welcome() {
     cout << "Welcome to the ChocAn interface!" << endl;
 }
 
 bool display_menu() {
+    display_welcome();
     bool exit_program_flag = false;
     Manager the_manager;
     Provider the_provider;
@@ -22,10 +24,10 @@ bool display_menu() {
         cin >> choice;
         switch (choice) {
             case 1:
-                // the_manager.manager_interface();
+                // the_manager.manager_interface(provider_list, member_list);
                 break;
             case 2:
-                // the_provider.provider_interface();
+                // the_provider.provider_interface(provider_list, member_list);
                 break;
             case 3:
                 exit_program_flag = true;

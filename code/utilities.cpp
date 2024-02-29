@@ -1,6 +1,6 @@
 #include "utilities.h"
 
-int readInt() {
+int read_int() {
   //temp integer to be inputted
   int temp = 0;
   cin >> temp;
@@ -14,7 +14,7 @@ int readInt() {
   return temp;
 }
 
-char readChar() {
+char read_char() {
   //temp char to be inputted
   char temp = '\0';
   cin >> temp;
@@ -28,7 +28,7 @@ char readChar() {
   return temp;
 }
 
-double getDouble() {
+double get_double() {
   //temp double to be inputted
   double temp = 0;
   cin >> temp;

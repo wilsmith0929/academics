@@ -21,7 +21,7 @@ bool display_menu() {
         cout << "2. Provider" << endl;
         cout << "3. Exit" << endl;
         int choice = 0;
-        choice = readInt();
+        choice = read_int();
         switch (choice) {
             case 1:
                 // the_manager.manager_interface(provider_list, member_list);

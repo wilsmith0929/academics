@@ -8,7 +8,7 @@ class Provider {
     public:
         Provider();
         bool provider_interface(vector<Provider> & provider_list, vector<Member> & member_list);
-        bool display_provider_directory(vector<Service> & service_list);
+        bool display_provider_directory(vector<Service> & provider_directory);
         bool set_provider_info(char name[], int ID[], char addr[], char city[], char state[], int zipcode[]);
         void display_provider_info();
     private:

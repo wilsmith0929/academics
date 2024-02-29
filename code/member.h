@@ -4,6 +4,7 @@
 class Member {
     public:
         Member();
+        //add some more constructors
         bool set_member_info(char name[], int ID[], char addr[], char city[], char state[], int zipcode[]);
     private:
         char member_name[25];

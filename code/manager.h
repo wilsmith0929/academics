@@ -4,6 +4,7 @@
 class Manager {
     public:
         Manager();
+        //some more constructors
         bool add_a_provider();
         bool update_a_provider();
         bool remove_a_provider();

@@ -12,7 +12,7 @@ class Provider {
         bool set_provider_info(char name[], int ID[], char addr[], char city[], char state[], int zipcode[]);
         void display_provider_info();
     private:
-        Service current_service;
+        // Service current_service; ?? Is this even necessary?
         char provider_name[25];
         int provider_ID[9];
         char street_addr[25];

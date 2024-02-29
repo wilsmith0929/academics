@@ -3,6 +3,7 @@
 class Manager {
     public:
         Manager();
+        bool manager_interface();
         bool add_a_provider();
         bool update_a_provider();
         bool remove_a_provider();

@@ -1,6 +1,6 @@
 #include "interface.h"
 
 int main() {
-    cout << "Welcome to ChocAn!" << endl;
+    display_menu();
     return 0;
 }

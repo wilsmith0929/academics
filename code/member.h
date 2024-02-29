@@ -4,6 +4,7 @@ class Member {
     public:
         Member();
         bool set_member_info(char name[], int ID[], char addr[], char city[], char state[], int zipcode[]);
+        void display_member_info();
     private:
         char member_name[25];
         int member_ID[9];

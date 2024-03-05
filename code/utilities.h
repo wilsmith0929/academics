@@ -2,6 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iterator>
+#include <cctype>
+#include <fstream>
 using namespace std;
 
 const int MAX = 101;

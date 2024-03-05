@@ -1,15 +1,16 @@
 #pragma once
 #include "utilities.h"
+#include "manager.h"
+#include "member.h" //KP - for now just inlcuding these, will update later with 
+                    //the "user" class
 
+void begin();               //KP - act as main, we will call this in main
+void displayMainMenu();            //KP - main menu
 
-void display_welcome();
-bool display_menu();
-/*
-class Interface {
-    public:
-        Interface();
-        void display_welcome();
-        bool display_menu();
-    private:
-};
-*/
+//KP - execute the options of user, we'll update the vectors to vector<User> respectively 
+void exeCmd(char option, vector<Member> & memberList, vector<Provider> & providerList);
+void providerMenu();        //KP - provider menu mimic test plan
+void managerMenu();         //KP - same as above^
+
+void displayWelcomeMsg();   //KP - welcome msg
+void displayExitMSg();      //KP - exit msg

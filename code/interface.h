@@ -13,4 +13,4 @@ void providerMenu();        //KP - provider menu mimic test plan
 void managerMenu();         //KP - same as above^
 
 void displayWelcomeMsg();   //KP - welcome msg
-void displayExitMSg();      //KP - exit msg
+void displayExitMsg();      //KP - exit msg

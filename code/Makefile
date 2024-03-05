@@ -1,19 +1,42 @@
 CC = g++
-FLAGS = -g -Wall -Werror -O2 -std=c++17
-OBJ_DIR = obj-files
-SOURCES = manager.cpp provider.cpp member.cpp utilities.cpp service.cpp interface.cpp main.cpp
-OBJS = $(addprefix $(OBJ_DIR)/,$(notdir $(SOURCES:.cpp=.o)))
-DEPS = manager.h provider.h member.h service.h interface.h utilities.h
+CFLAGS = -std=c++17 -g -Wall
 
-$(OBJ_DIR)/%.o: %.cpp $(DEPS) | $(OBJ_DIR)
-	$(CC) -c -o $@ $< $(FLAGS)
+# List of source files
+SOURCES = utilities.cpp service.cpp provider.cpp member.cpp manager.cpp interface.cpp main.cpp
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+# List of object files
+OBJECTS = $(SOURCES:.cpp=.o)
 
-ChocAnTerminal: $(OBJS)
-	$(CC) -o $@ $^ $(FLAGS)
+# Main executable
+TARGET = main
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 .PHONY: clean
 clean:
-	rm -rf $(OBJ_DIR) ChocAnTerminal
+	rm -f $(OBJECTS) $(TARGET)
+
+#commented out eddies make
+#CC = g++
+#FLAGS = -g -Wall -Werror -O2 -std=c++17
+#OBJ_DIR = obj-files
+#SOURCES = manager.cpp provider.cpp member.cpp utilities.cpp service.cpp interface.cpp main.cpp
+#OBJS = $(addprefix $(OBJ_DIR)/,$(notdir $(SOURCES:.cpp=.o)))
+#DEPS = manager.h provider.h member.h service.h interface.h utilities.h
+
+#$(OBJ_DIR)/%.o: %.cpp $(DEPS) | $(OBJ_DIR)
+#	$(CC) -c -o $@ $< $(FLAGS)
+
+#$(OBJ_DIR):
+#	mkdir -p $(OBJ_DIR)
+
+#ChocAnTerminal: $(OBJS)
+#	$(CC) -o $@ $^ $(FLAGS)
+
+#.PHONY: clean
+#clean:
+#	rm -rf $(OBJ_DIR) ChocAnTerminal

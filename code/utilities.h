@@ -8,7 +8,7 @@
 using namespace std;
 
 const int MAX = 101;
-const int PASSWORD = 1111;
+const int _PASSWORD = 1111;
 
 //other side functions we might use
 

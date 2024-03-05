@@ -1,6 +1,6 @@
 #include "interface.h"
 
 int main() {
-    display_menu();
+    begin();
     return 0;
 }

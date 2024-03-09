@@ -9,7 +9,7 @@ void begin() {
     //update names accordingly + the files are in text-doucments folder
     //need to figure out how we load in in when from different folder
     string providerFile = "provider_details.txt";
-    string memberFile = "member_deetails.txt";
+    string memberFile = "member_details.txt";
 
     vector<Provider> providerList;
     vector<Member> memberList;

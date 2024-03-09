@@ -4,7 +4,7 @@
 #include "member.h"
 #include "utilities.h"
 
-void begin() {
+void Interface::begin() {
 
     //update names accordingly + the files are in text-doucments folder
     //need to figure out how we load in in when from different folder
@@ -33,7 +33,7 @@ void begin() {
 }
 
 //KP - execute the options of user, we'll update the vectors to vector<User> respectively 
-void exeCmd(int option, vector<Member> & memberList, vector<Provider> & providerList) {
+void Interface::exeCmd(int option, vector<Member> & memberList, vector<Provider> & providerList) {
     int userOption = 0;
     int password = 0;
   
@@ -145,7 +145,7 @@ void exeCmd(int option, vector<Member> & memberList, vector<Provider> & provider
 
 //KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
 //later on
-void displayMainMenu() {
+void Interface::displayMainMenu() {
     cout << "\n**** Main Menu ****" << endl;
     cout << "\t1- Manager Login" << endl;
     cout << "\t2- Provider Login" << endl;
@@ -154,7 +154,7 @@ void displayMainMenu() {
 
 //KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
 //later on
-void providerMenu() {
+void Interface::providerMenu() {
     cout << "\n\t**** Provider Menu ****" << endl;
     cout << "\t\t1- Validate Members" << endl;
     cout << "\t\t2- Enter Service Details" << endl;
@@ -165,7 +165,7 @@ void providerMenu() {
 
 //KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
 //later on
-void managerMenu() {
+void Interface::managerMenu() {
   cout << "\n\t**** Manager Menu ****" << endl;
     cout << "\t\t1- Manage Members" << endl;
     cout << "\t\t2- Manage Providers" << endl;
@@ -176,10 +176,10 @@ void managerMenu() {
 
 
 
-void displayWelcomeMsg() {
+void Interface::displayWelcomeMsg() {
     cout << "\nWelcome to the ChocAn interface!" << endl;
 }
 
-void displayExitMsg() {
+void Interface::displayExitMsg() {
     cout << "\nThank you for using the ChocAn interface!" << endl;
 }

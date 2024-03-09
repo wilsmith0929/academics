@@ -1,6 +1,8 @@
 #include "interface.h"
 
 int main() {
-    begin();
+    Interface interface;
+
+    interface.begin();
     return 0;
 }

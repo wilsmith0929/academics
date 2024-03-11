@@ -1,8 +1,10 @@
 #include "interface.h"
 
 int main() {
-    Interface interface;
+    //just not using interface class for now - KP
+    //Interface interface;
+    //interface.begin();
 
-    interface.begin();
+    begin();
     return 0;
 }

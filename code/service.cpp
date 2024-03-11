@@ -1,33 +1,36 @@
 #include "service.h"
+using namespace std;
 
-Service::Service() {}
-
-int Service::display_services()
+Service::Service()
 {
-    ifstream inputFile("services.txt");
+	ID = 0;
+	service_name = "";
+	service_fee = 0.0;
 
-    if (!inputFile.is_open()) 
-    {
-        cerr << "Error opening the file" << endl;
-        return 1;
-    }
-
-    string line;
-    while(getline(inputFile, line)) 
-    {
-        istringstream iss(line);
-        
-        if (iss >> service_code >> ws && getline(iss, service_name, '|') && iss >> service_fee)
-        {
-            cout << "Service Code: " << service_code << " Service Name: " << service_name << " Service Fee: " << service_fee << endl;
-        }
-
-        else {
-            cerr << "Error parsing line" << line << endl;
-        }
-    }
-
-    inputFile.close();
-
-    return 1;
 }
+
+Service::Service(const int & id, const string & i_name, const float & i_cost)
+{
+	ID = id;
+	service_name = i_name;
+	service_fee = i_cost;
+}
+		
+int Service::compare_ID(const int & id)
+{
+	if (ID == id) return 0;
+	else if (ID < id) return -1;
+
+	return 1;
+}
+
+int Service::display_service()
+{
+	cout << "ID:\t" << ID << endl;
+	cout << "Name:\t" << service_name << endl;
+	cout << "Cost:\t" << service_fee << endl;
+
+	return 0;
+}
+
+

@@ -71,13 +71,28 @@ int Person::display_person(void) const
 	cout << "Person:\t" << first_name << " " << last_name << endl;
 	cout << "ID:\t" << ID << endl;
 	cout << "Status:\t" << status << endl;
-	cout << "Type:\t" << type << endl << endl;
+	cout << "Type:\t" << type << endl;
 
 	cout << "Street:\t" << street_add << endl;
 	cout << "City:\t" << city << endl;
 	cout << "State:\t" << state << endl;
-	cout << "Zip:\t" << zip_code << endl;
+	cout << "Zip:\t" << zip_code << endl << endl;
 
+	return 0;
+}
+
+int Person::retrieve_info(Person & to_fill)
+{
+	to_fill.ID = ID;
+	to_fill.status = status;
+	to_fill.type = type;
+	to_fill.first_name = first_name;
+	to_fill.last_name = last_name;
+	to_fill.street_add = street_add;
+	to_fill.city = city;
+	to_fill.state = state;
+	to_fill.zip_code = zip_code;
+	
 	return 0;
 }
 
@@ -88,7 +103,8 @@ int Person::display_person(void) const
 int Person::change_person_info(const Person & updated)
 {
 	int to_return = 0;
-
+	
+//	int comp_result = first_name.compare(updated.first_name);
 	bool result = updated.first_name.empty();
 	if (result == false)
 	{

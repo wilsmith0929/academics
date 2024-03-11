@@ -12,7 +12,7 @@ class Service
 		Service(const int & id, const string & i_name, const float & i_cost);
 		
 		int compare_ID(const int & id);
-		int display_service();
+		int display_service(void) const;
 
 	private:
 		int ID;

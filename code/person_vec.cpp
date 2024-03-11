@@ -1,8 +1,10 @@
 #include "person_vec.h"
 using namespace std;
 
-int PersonVec::add_person(const Person & to_add)
+int PersonVec::add_person(const long & id, const string & i_type, const string & first, const string & last
+, const string & s_address, const string & i_city, const string & i_state, const int & zip)
 {
+	Person to_add(id, A_STAT, i_type, first, last, s_address, i_city, i_state, zip);
 	per_vec.push_back(to_add);
 
 	return 0;
@@ -17,8 +19,10 @@ int PersonVec::update_person(const long & to_find, const Person & to_change)
 	return 1;
 }
 
-int PersonVec::upload_person(const Person & to_upload)
+int PersonVec::upload_person(const long & id, const string & i_status, const string & i_type, const string & first, const string & last
+, const string & s_address, const string & i_city, const string & i_state, const int & zip)
 {
+	Person to_upload(id, i_status, i_type, first, last, s_address, i_city, i_state, zip);
 	per_vec.push_back(to_upload);
 
 	return 0;	
@@ -59,3 +63,15 @@ int PersonVec::find_person(const long to_compare)
 	}
 	return 1;	
 }
+
+int PersonVec::display_people(void) const
+{
+	unsigned int size = per_vec.size();
+	for (unsigned int i = 0; i < size; ++i)
+	{
+		per_vec[i].display_person();		
+	}
+	
+	return 0;
+}
+

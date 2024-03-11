@@ -24,11 +24,11 @@ int Service::compare_ID(const int & id)
 	return 1;
 }
 
-int Service::display_service()
+int Service::display_service(void) const
 {
 	cout << "ID:\t" << ID << endl;
 	cout << "Name:\t" << service_name << endl;
-	cout << "Cost:\t" << service_fee << endl;
+	cout << "Cost:\t" << service_fee << endl << endl;
 
 	return 0;
 }

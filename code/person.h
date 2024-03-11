@@ -22,6 +22,7 @@ class Person
 		int compare_ID(const long & id);
 		int verify_person(const long & id);
 		int display_person(void) const;
+		int retrieve_info(Person & to_fill);
 
 	//Azeezah - The function below achieves the same thing as the functions below the second comment.
 	//It just does it in one function by passing in an instances of the Person class.

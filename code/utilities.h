@@ -5,6 +5,7 @@
 #include <iterator>
 #include <cctype>
 #include <fstream>
+#include <cstring>
 using namespace std;
 
 const int MAX = 101;

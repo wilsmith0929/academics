@@ -1,8 +1,5 @@
 #pragma once
 #include "person.h"
-#include "utilities.h"
-
-using std::vector;
 
 class PersonVec
 {

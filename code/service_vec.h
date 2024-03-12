@@ -1,9 +1,5 @@
+#pragma once
 #include "service.h"
-#include <cstring>
-#include <vector>
-#include <fstream>
-
-using std::vector;
 
 class SerVec
 {

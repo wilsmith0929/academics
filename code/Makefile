@@ -7,7 +7,7 @@ CFLAGS = -std=c++17 -g -Wall
 #SOURCES = utilities.cpp service.cpp provider.cpp member.cpp manager.cpp interface.cpp main.cpp
 
 #new sources
-SOURCES = utilities.cpp service.cpp person.cpp person_vec.cpp manager.cpp interface.cpp main.cpp
+SOURCES = utilities.cpp service.cpp person.cpp person_vec.cpp interface.cpp main.cpp
 
 # List of object files
 OBJECTS = $(SOURCES:.cpp=.o)

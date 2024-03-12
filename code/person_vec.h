@@ -21,6 +21,8 @@ class PersonVec
 		int find_person(const long to_compare);
 
 		int display_people(void) const;
+
+		void load_from_file(const string file_name, const string type);
 	private:
 		vector<Person> per_vec;
 		Person * hold;

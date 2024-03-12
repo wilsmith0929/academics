@@ -75,3 +75,25 @@ int PersonVec::display_people(void) const
 	return 0;
 }
 
+void PersonVec::load_from_file(const string file_name, const string type) {
+	long temp_ID;
+	string temp_status;
+	string temp_type;
+	string temp_first_name;
+	string temp_last_name;
+	string temp_street_add;
+	string temp_city;
+	string temp_state;
+	int temp_zip_code;
+
+	ifstream in;
+
+	in.open(file_name);
+	if(!in) {
+		cerr << "\nFailed to open " << file_name << " Exitting!" << endl;
+		exit(0);
+	}
+
+	
+	
+}

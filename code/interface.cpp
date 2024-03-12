@@ -4,21 +4,17 @@
 
 void begin() {
 
-    //update names accordingly + the files are in text-doucments folder
-    //need to figure out how we load in in when from different folder
-    //string providerFile = "provider_details.txt";
-    //string memberFile = "member_details.txt";
-
-    //vector<Person> memberList;
-    //vector<Person> providerList;
+    
+    string fileName = "text-documents/people.txt";
 
     PersonVec memberList;
     PersonVec providerList;
     PersonVec managerList;
 
-//TESTING PURPOSES since waiting for loadfromfile - KP
+    //TESTING PURPOSES since waiting for loadfromfile - KP
+    //managers
     long id1 = 111111111;
-    string first1 = "person1";
+    string first1 = "manager";
     string last1 = "1";
     string type1 = "MANAGER";
     string status1 = "Active";
@@ -29,7 +25,7 @@ void begin() {
     managerList.add_person(id1, type1, first1, last1, street1, city1, state1, zip1);
 
     long id2 = 222222222;
-    string first2 = "person2";
+    string first2 = "manager";
     string last2 = "2";
     string type2 = "MANAGER";
     string status2 = "Active";
@@ -38,6 +34,29 @@ void begin() {
     string state2 = "OR";
     int zip2 = 97777;
     managerList.add_person(id2, type2, first2, last2, street2, city2, state2, zip2);
+
+    //providers
+    long id3 = 123456789;
+    string first3 = "provider";
+    string last3 = "1";
+    string type3 = "PROVIDER";
+    string status3 = "Active";
+    string street3 = "1234 street";
+    string city3 = "portland";
+    string state3 = "OR";
+    int zip3 = 97777;
+    providerList.add_person(id3, type3, first3, last3, street3, city3, state3, zip3);
+
+    long id4 = 333333333;
+    string first4 = "provider";
+    string last4 = "2";
+    string type4 = "PROVIDER";
+    string status4 = "Active";
+    string street4 = "5678 street";
+    string city4 = "portland";
+    string state4 = "OR";
+    int zip4 = 97777;
+    providerList.add_person(id4, type4, first4, last4, street4, city4, state4, zip4);
 
 
     int userOption = 0;
@@ -60,19 +79,26 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
     long password = 0;
     int check = 0;
   
+    cout << "\nFOR TESTING PURPOSES ONLY DONT DELETE" << endl;
+    cout << "WHEN TYPING IN PROVIDER AND MANAGER PASSWORD, ITS GOTTA MATCH";
+    cout << "ANY OF THE providers and managers in the list" << endl;
+    cout << "\nTESTING - managerlist" << endl;
     managerList.display_people();
+
+    cout << "\nTESTING - providerlist" << endl;
+    providerList.display_people();
 
     switch(option) {
 
-        //manager login, then if valid we prompt them with manager menu
         case 1:
             //keep this for reset each time
             password = 0;
             //check if valid manager
             cout << "\n\tMANAGER LOGIN" << endl;
-            cout << "\t=> Enter Manager Number : ";
+            cout << "\t=> Enter Manager ID Number : ";
             cin  >> password;
             check = managerList.verify_person(password);
+
             while(check != 0) {
                 cout << "\tManager " << password << " is not found. Check the number and try again" << endl;
                 cout << "\t=> Enter Manager Number : ";
@@ -110,18 +136,22 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
             break;
 
-        //check if valid provider, then prompt providerMenu
         case 2:
+            //keep this for reset each time
             password = 0;
             //check if valid provider
-            cout << "\n\tProvider Login!" << endl;
-            cout << "\tEnter provider password: (its 1111) - add func later: ";
+            cout << "\n\tPROVIDER LOGIN" << endl;
+            cout << "\t=> Enter Provider ID Number : ";
             cin  >> password;
+            check = providerList.verify_person(password);
 
-            // we can maybe have a utility functin that checks for password
-            //just a temporary for now, PASSWORD is global in utilities.h
-            //if valid, proceed with manager menu
-            if(password == _PASSWORD) {
+            while(check != 0) {
+                cout << "\tProvider " << password << " is not found. Check the number and try again" << endl;
+                cout << "\t=> Enter Provider Number : ";
+                cin  >> password;
+                check = providerList.verify_person(password);
+            }
+            if(check == 0) {
                 do {
                     providerMenu();
                     cout << "\n\t=> Option: ";
@@ -197,8 +227,6 @@ void managerMenu() {
     cout << "\t4- Generate Member Report" << endl;
     cout << "\t5- Return to Main Menu" << endl;
 }
-
-
 
 void displayWelcomeMsg() {
     cout << "\nWelcome to the ChocAn interface!" << endl;

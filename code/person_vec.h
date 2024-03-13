@@ -4,7 +4,7 @@
 #define MEM_TYPE "MEMBER"
 #define PRO_TYPE "PROVIDER"
 #define MAN_TYPE "MANAGER"
-#define PEOPLE_FILE "text-documents/people.txt"
+#define PEOPLE_FILE "people.txt"
 
 class PersonVec {
 	public:
@@ -14,7 +14,8 @@ class PersonVec {
 			const string & s_address, const string & i_city, const string & i_state, const int & zip);
 	
 		int update_person(const long & to_find, const Person & to_change);
-		
+		int retrieve_person(const long to_find, Person & to_fill);
+
 		int upload_person(const long & id, const string & i_status, const string & i_type, const string & first, const string & last, 
 			const string & s_address, const string & i_city, const string & i_state, const int & zip);
 		

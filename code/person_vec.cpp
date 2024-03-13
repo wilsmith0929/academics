@@ -10,11 +10,15 @@ int PersonVec::add_person(const long & id, const string & i_type, const string &
 }
 
 int PersonVec::update_person(const long & to_find, const Person & to_change) {
-	find_person(to_find);
+	int result = find_person(to_find);
+	if (result == 1)
+	{
+		return 1;
+	}
 
 	hold->change_person_info(to_change);
 
-	return 1;
+	return 0;
 }
 
 int PersonVec::upload_person(const long & id, const string & i_status, const string & i_type, const string & first, const string & last
@@ -24,6 +28,18 @@ int PersonVec::upload_person(const long & id, const string & i_status, const str
 	per_vec.push_back(to_upload);
 
 	return 0;	
+}
+
+int PersonVec::retrieve_person(const long to_find, Person & to_fill)
+{
+	int result = find_person(to_find);
+	if (result == 1)
+	{
+		return 1;
+	}
+	
+	hold->retrieve_info(to_fill);	
+	return 0;
 }
 
 //Verifies the person or the ID passed in.

@@ -8,7 +8,8 @@ class Service {
 		
 		int compare_ID(const int & id);
 		int display_service(void) const;
-
+		int display(void) const;
+		
 	private:
 		int ID;
 		string service_name;

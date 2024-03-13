@@ -19,6 +19,7 @@ int Service::compare_ID(const int & id) {
 	return 1;
 }
 
+//Testing display function
 int Service::display_service(void) const {
 	cout << "ID:\t" << ID << endl;
 	cout << "Name:\t" << service_name << endl;
@@ -26,4 +27,10 @@ int Service::display_service(void) const {
 	return 0;
 }
 
+int Service::display(void) const {
+	cout << setw(15) << left << ID;
+	cout << setw(15) << left << service_name;
+	cout << setw(15) << left << service_fee << endl;
+	return 0;
+}
 

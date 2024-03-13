@@ -11,6 +11,9 @@ void begin() {
     PersonVec providerList;
     PersonVec managerList;
 
+    upload_people(memberList, providerList, managerList);
+
+/*
     //TESTING PURPOSES since waiting for loadfromfile - KP
     //managers
     long id1 = 111111111;
@@ -57,7 +60,7 @@ void begin() {
     string state4 = "OR";
     int zip4 = 97777;
     providerList.add_person(id4, type4, first4, last4, street4, city4, state4, zip4);
-
+*/
 
     int userOption = 0;
 

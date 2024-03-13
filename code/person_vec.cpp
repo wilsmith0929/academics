@@ -75,29 +75,6 @@ int PersonVec::display_people(void) const
 	return 0;
 }
 
-void PersonVec::load_from_file(const string file_name, const string type) {
-	long temp_ID;
-	string temp_status;
-	string temp_type;
-	string temp_first_name;
-	string temp_last_name;
-	string temp_street_add;
-	string temp_city;
-	string temp_state;
-	int temp_zip_code;
-
-	ifstream in;
-
-	in.open(file_name);
-	if(!in) {
-		cerr << "\nFailed to open " << file_name << " Exitting!" << endl;
-		exit(0);
-	}
-
-	
-	
-}
-
 // This is not a method or PersonVec - Call this function to upload members, managers, and providers
 long upload_people(PersonVec & members, PersonVec & providers, PersonVec & managers)
 {
@@ -117,8 +94,12 @@ long upload_people(PersonVec & members, PersonVec & providers, PersonVec & manag
         string state = "";
         int zip_code = 0;
 
-        fin.open(filename.c_str());
-        if (!fin) return 1;
+        fin.open("people.txt");
+        //if (!fin) return 1;
+		if(!fin) {
+			cerr << "\nFailed to open! Exitting!" << endl;
+			exit(0);
+		}
         else
         {
                 while(!fin.eof())

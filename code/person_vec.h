@@ -4,7 +4,7 @@
 #define MEM_TYPE "MEMBER"
 #define PRO_TYPE "PROVIDER"
 #define MAN_TYPE "MANAGER"
-#define PEOPLE_FILE "people.txt"
+#define PEOPLE_FILE "text-documents/people.txt"
 
 class PersonVec
 {
@@ -24,7 +24,6 @@ class PersonVec
 
 		int display_people(void) const;
 
-		void load_from_file(const string file_name, const string type);
 	private:
 		vector<Person> per_vec;
 		Person * hold;

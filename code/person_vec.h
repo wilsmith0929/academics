@@ -1,6 +1,11 @@
 #pragma once
 #include "person.h"
 
+#define MEM_TYPE "MEMBER"
+#define PRO_TYPE "PROVIDER"
+#define MAN_TYPE "MANAGER"
+#define PEOPLE_FILE "people.txt"
+
 class PersonVec
 {
 	public:
@@ -25,3 +30,8 @@ class PersonVec
 		Person * hold;
 		long starting_value;
 };
+
+//The prototype for the function that uploads all members, providers, and managers.
+//Returns the largest ID. I was thinking that whenever we create a new member we just increment the
+//largest value.
+long upload_people(PersonVec & members, PersonVec & providers, PersonVec & managers);

@@ -31,7 +31,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 void providerMenu();        //KP - provider menu mimic test plan
 void managerMenu();         //KP - same as above
 void manageMembersMenu();   //KP - menu for managing members
-
+void manageProvidersMenu(); //KP - menu for managing providers
 
 
 void displayWelcomeMsg();   //KP - welcome msg

@@ -4,64 +4,11 @@
 
 void begin() {
 
-    
-    string fileName = "text-documents/people.txt";
-
     PersonVec memberList;
     PersonVec providerList;
     PersonVec managerList;
 
     upload_people(memberList, providerList, managerList);
-
-/*
-    //TESTING PURPOSES since waiting for loadfromfile - KP
-    //managers
-    long id1 = 111111111;
-    string first1 = "manager";
-    string last1 = "1";
-    string type1 = "MANAGER";
-    string status1 = "Active";
-    string street1 = "1234 street";
-    string city1 = "portland";
-    string state1 = "OR";
-    int zip1 = 97777;
-    managerList.add_person(id1, type1, first1, last1, street1, city1, state1, zip1);
-
-    long id2 = 222222222;
-    string first2 = "manager";
-    string last2 = "2";
-    string type2 = "MANAGER";
-    string status2 = "Active";
-    string street2 = "5678 street";
-    string city2 = "portland";
-    string state2 = "OR";
-    int zip2 = 97777;
-    managerList.add_person(id2, type2, first2, last2, street2, city2, state2, zip2);
-
-    //providers
-    long id3 = 123456789;
-    string first3 = "provider";
-    string last3 = "1";
-    string type3 = "PROVIDER";
-    string status3 = "Active";
-    string street3 = "1234 street";
-    string city3 = "portland";
-    string state3 = "OR";
-    int zip3 = 97777;
-    providerList.add_person(id3, type3, first3, last3, street3, city3, state3, zip3);
-
-    long id4 = 333333333;
-    string first4 = "provider";
-    string last4 = "2";
-    string type4 = "PROVIDER";
-    string status4 = "Active";
-    string street4 = "5678 street";
-    string city4 = "portland";
-    string state4 = "OR";
-    int zip4 = 97777;
-    providerList.add_person(id4, type4, first4, last4, street4, city4, state4, zip4);
-*/
-
     int userOption = 0;
 
     displayWelcomeMsg();
@@ -69,7 +16,7 @@ void begin() {
     do {
         displayMainMenu();
         cout << "\n=> Option: ";
-        userOption = read_int();    //some data validation
+        userOption = read_int();    
         exeCmd(userOption, memberList, providerList, managerList);
     } while(userOption != 3);
 
@@ -98,18 +45,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
     string input;
     char save = '\0';
-  
-    cout << "\nFOR TESTING PURPOSES ONLY DONT DELETE" << endl;
-    cout << "WHEN TYPING IN PROVIDER AND MANAGER PASSWORD, ITS GOTTA MATCH";
-    cout << "ANY OF THE providers and managers in the list" << endl;
-    cout << "\nTESTING - managerlist" << endl;
-    managerList.display_people();
 
-    cout << "\nTESTING - providerlist" << endl;
-    providerList.display_people();
-
-    cout << "\nTESTING - memberList" << endl;
-    memberList.display_people();
+    //all of these variables are for inactivating member
+    Person tempMember;
 
     switch(option) {
 
@@ -187,6 +125,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                                 zip = stoi(input);
                                             }
                                         }
+                                        
+                                        status = "Active";
+                                        type = "MEMBER";
 
                                         if(input == "EXIT") {
                                             cout << "\n\t\tReturned to Manager Menu" << endl;
@@ -210,6 +151,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                             cout << first << " " << last << "." << endl;
                                             memberList.upload_person(id, status, type, first, last, street, city, state, zip);
                                         }
+
                                         //needs to get resetted
                                         id = 0;
                                         first = "";
@@ -220,11 +162,23 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         city = "";
                                         state = "";
                                         zip = 0;
+                                        save = '\0';
                                             
-                                        
                                         break;
                                     case 2:
-                                        cout << "\t\tmanager menu action 2" << endl;
+                                        memberList.display_people();
+                                        cout << "\n\t\tSEARCH MEMBER" << endl;
+                                        cout << "\t\t=> Enter Member Number : ";
+                                        cin  >> id;
+                                        check = memberList.find_person(id);
+                                        while(check != 0) {
+                                            cout << "\t\tMEMBER not found. Check the number and try again" << endl;
+                                            cout << "\t\t=> Enter Member Number : ";
+                                            cin  >> id;
+                                            check = memberList.find_person(id);
+                                        }
+
+                                        cout << "\t\tMember found" << endl;
                                         break;
                                     case 3:
                                         cout << "\n\t\tReturned to Manager Menu" << endl;
@@ -238,7 +192,121 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                             break;
 
                         case 2:
-                            cout << "\tmanager menu action 2" << endl;
+                            do {
+                                manageProvidersMenu();
+                                cout << "\n\t\t=> Option: ";
+                                userOption = read_int();
+
+                                switch(userOption) {
+                                    case 1:
+
+                                        for(i = 0; i < 6 && input != "EXIT"; i++) {
+                                            cout << "\n\t\tNEW PROVIDER DETAILS" << endl;
+                                            cout << "\t\tFirst Name    : " << first  << endl;
+                                            cout << "\t\tLast Name     : " << last   << endl;
+                                            cout << "\t\tStreet Address: " << street << endl;
+                                            cout << "\t\tCity          : " << city   << endl;
+                                            cout << "\t\tState         : " << state  << endl;
+                                            cout << "\t\tZipcode       : " << tempZ  << endl;
+
+                                            if(i == 0) {
+                                                cout << "\t\t=> Enter First Name : ";
+                                                cin  >> input;
+                                                first = input;
+                                            }
+                                            else if(i == 1) {
+                                                cout << "\t\t=> Enter Last Name : ";
+                                                cin  >> input;
+                                                last = input;
+                                            }
+                                            else if(i == 2) {
+                                                cout << "\t\t=> Enter Street Address : ";
+                                                cin.ignore();
+                                                getline(cin, input);
+                                                street = input;
+                                            }
+                                            else if(i == 3) {
+                                                cout << "\t\t=> Enter City : ";
+                                                cin  >> input;
+                                                city = input;
+                                            }    
+                                            else if(i == 4) {
+                                                cout << "\t\t=> Enter State : ";
+                                                cin  >> input;
+                                                state = input;
+                                            }
+                                            else if(i == 5) {
+                                                cout << "\t\t=> Enter Zipcode : ";
+                                                cin  >> input;
+                                                tempZ = input;
+                                                zip = stoi(input);
+                                            }
+                                        }
+
+                                        status = "Active";
+                                        type = "PROVIDER";
+
+                                        if(input == "EXIT") {
+                                            cout << "\n\t\tReturned to Manager Menu" << endl;
+                                            break;
+                                        }
+
+                                        cout << "\n\t\tNEW PROVIDER DETAILS" << endl;
+                                        cout << "\t\tFirst Name    : " << first  << endl;
+                                        cout << "\t\tLast Name     : " << last   << endl;
+                                        cout << "\t\tStreet Address: " << street << endl;
+                                        cout << "\t\tCity          : " << city   << endl;
+                                        cout << "\t\tState         : " << state  << endl;
+                                        cout << "\t\tZipcode       : " << tempZ  << endl;
+                                        cout << "\t\t=> Save New Provider Y/N : ";
+                                        cin  >> save;
+
+                                        if(tolower(save == 'y')) {
+                                            srand(time(0));
+                                            id = 100'000'000 + rand() % 900'000'000;
+                                            cout << "\n\t\tProvider Number " << id << " is assigned to ";
+                                            cout << first << " " << last << "." << endl;
+                                            providerList.upload_person(id, status, type, first, last, street, city, state, zip);
+                                        }
+
+                                        //needs to get resetted
+                                        id = 0;
+                                        first = "";
+                                        last = "";
+                                        type = ""; 
+                                        status = ""; 
+                                        street = ""; 
+                                        city = "";
+                                        state = "";
+                                        zip = 0;
+                                        save = '\0';
+                                            
+                                        break;
+                                    case 2:
+                                        memberList.display_people();
+                                        cout << "\n\t\tSEARCH PROVIDER" << endl;
+                                        cout << "\t\t=> Enter Provider Number : ";
+                                        cin  >> id;
+                                        check = providerList.find_person(id);
+                                        while(check != 0) {
+                                            cout << "\t\tPROVIDER not found. Check the number and try again" << endl;
+                                            cout << "\t\t=> Enter Provider Number : ";
+                                            cin  >> id;
+                                            check = memberList.find_person(id);
+                                        }
+
+                                        cout << "\t\tProvider found" << endl;
+                                        
+                                        break;
+                                    case 3:
+                                        cout << "\n\t\tReturned to Manager Menu" << endl;
+                                        break;
+                                    default:
+                                        cout << "\n\t\tInvalid Option! Please try again!" << endl;
+                                }
+
+                            } while(userOption != 3);
+
                             break;
                         case 3:
                             cout << "\tmanager menu action 3" << endl;
@@ -313,16 +381,11 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
             break;
     
         default:
-            cout << "Invalid Option! Please try again! : " << endl;
+            cout << "Invalid Option! Please try again!" << endl;
 
     }
-
-    cout << "\nTESTING TO SEE IF ADD WORKED - memberList" << endl;
-    memberList.display_people();
 }
 
-//KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
-//later on
 void displayMainMenu() {
     cout << "\n**** Main Menu ****" << endl;
     cout << "1- Manager Login" << endl;
@@ -330,8 +393,6 @@ void displayMainMenu() {
     cout << "3- Quit" << endl;
 }
 
-//KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
-//later on
 void providerMenu() {
     cout << "\n\t**** Provider Menu ****" << endl;
     cout << "\t1- Validate Members" << endl;
@@ -341,8 +402,6 @@ void providerMenu() {
     cout << "\t5- Return to Main Menu" << endl;
 }
 
-//KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
-//later on
 void managerMenu() {
     cout << "\n\t**** Manager Menu ****" << endl;
     cout << "\t1- Manage Members" << endl;
@@ -356,6 +415,13 @@ void manageMembersMenu() {
     cout << "\n\t\t**** Manage Members Menu ****" << endl;
     cout << "\t\t1- Create New Member Record" << endl;
     cout << "\t\t2- Update/Inactivate Member Record" << endl;
+    cout << "\t\t3- Return to Manager Menu" << endl;
+}
+
+void manageProvidersMenu() {
+    cout << "\n\t\t**** Manage Providers Menu ****" << endl;
+    cout << "\t\t1- Create New Provider Record" << endl;
+    cout << "\t\t2- Update/Inactivate Provider Record" << endl;
     cout << "\t\t3- Return to Manager Menu" << endl;
 }
 

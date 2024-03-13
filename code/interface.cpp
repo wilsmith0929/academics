@@ -208,15 +208,15 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                             memberList.upload_person(id, status, type, first, last, street, city, state, zip);
                                         }
                                         //needs to get resetted
-                                        long id = 0;
-                                        string first = "";
-                                        string last = "";
-                                        string type = ""; 
-                                        string status = ""; 
-                                        string street = ""; 
-                                        string city = "";
-                                        string state = "";
-                                        int zip = 0;
+                                        id = 0;
+                                        first = "";
+                                        last = "";
+                                        type = ""; 
+                                        status = ""; 
+                                        street = ""; 
+                                        city = "";
+                                        state = "";
+                                        zip = 0;
                                             
                                         
                                         break;

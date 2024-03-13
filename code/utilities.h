@@ -6,6 +6,8 @@
 #include <cctype>
 #include <fstream>
 #include <cstring>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
 const int MAX = 101;

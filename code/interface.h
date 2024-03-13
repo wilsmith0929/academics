@@ -30,5 +30,9 @@ void displayMainMenu();     //KP - main menu
 void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, PersonVec & managerList);
 void providerMenu();        //KP - provider menu mimic test plan
 void managerMenu();         //KP - same as above
+void manageMembersMenu();   //KP - menu for managing members
+
+
+
 void displayWelcomeMsg();   //KP - welcome msg
 void displayExitMsg();      //KP - exit msg

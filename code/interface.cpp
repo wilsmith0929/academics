@@ -78,6 +78,23 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
     int userOption = 0;
     long password = 0;
     int check = 0;
+
+    //all of these variables are required for the manager members menu - pls leave them here
+    //if not, theres jump errors
+    long id = 0;
+    string first = "";
+    string last = "";
+    string type = "MEMBER"; 
+    string status = "Active"; 
+    string street = ""; 
+    string city = "";
+    string state = "";
+    string tempZ = "";
+    int zip = 0;
+    int i = 0;
+
+    string input;
+    char save = '\0';
   
     cout << "\nFOR TESTING PURPOSES ONLY DONT DELETE" << endl;
     cout << "WHEN TYPING IN PROVIDER AND MANAGER PASSWORD, ITS GOTTA MATCH";
@@ -87,6 +104,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
     cout << "\nTESTING - providerlist" << endl;
     providerList.display_people();
+
+    cout << "\nTESTING - memberList" << endl;
+    memberList.display_people();
 
     switch(option) {
 
@@ -114,8 +134,106 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                     switch(userOption) {
                         case 1:
-                            cout << "\tmanager menu action 1" << endl;
+                            do {
+                                manageMembersMenu();
+                                cout << "\n\t\t=> Option: ";
+                                userOption = read_int();
+
+                                switch(userOption) {
+                                    case 1:
+
+                                        for(i = 0; i < 6 && input != "EXIT"; i++) {
+                                            cout << "\n\t\tNEW MEMBER DETAILS" << endl;
+                                            cout << "\t\tFirst Name    : " << first  << endl;
+                                            cout << "\t\tLast Name     : " << last   << endl;
+                                            cout << "\t\tStreet Address: " << street << endl;
+                                            cout << "\t\tCity          : " << city   << endl;
+                                            cout << "\t\tState         : " << state  << endl;
+                                            cout << "\t\tZipcode       : " << tempZ  << endl;
+
+                                            if(i == 0) {
+                                                cout << "\t\t=> Enter First Name : ";
+                                                cin  >> input;
+                                                first = input;
+                                            }
+                                            else if(i == 1) {
+                                                cout << "\t\t=> Enter Last Name : ";
+                                                cin  >> input;
+                                                last = input;
+                                            }
+                                            else if(i == 2) {
+                                                cout << "\t\t=> Enter Street Address : ";
+                                                cin.ignore();
+                                                getline(cin, input);
+                                                street = input;
+                                            }
+                                            else if(i == 3) {
+                                                cout << "\t\t=> Enter City : ";
+                                                cin  >> input;
+                                                city = input;
+                                            }    
+                                            else if(i == 4) {
+                                                cout << "\t\t=> Enter State : ";
+                                                cin  >> input;
+                                                state = input;
+                                            }
+                                            else if(i == 5) {
+                                                cout << "\t\t=> Enter Zipcode : ";
+                                                cin  >> input;
+                                                tempZ = input;
+                                                zip = stoi(input);
+                                            }
+                                        }
+
+                                        if(input == "EXIT") {
+                                            cout << "\n\t\tReturned to Manager Menu" << endl;
+                                            break;
+                                        }
+
+                                        cout << "\n\t\tNEW MEMBER DETAILS" << endl;
+                                        cout << "\t\tFirst Name    : " << first  << endl;
+                                        cout << "\t\tLast Name     : " << last   << endl;
+                                        cout << "\t\tStreet Address: " << street << endl;
+                                        cout << "\t\tCity          : " << city   << endl;
+                                        cout << "\t\tState         : " << state  << endl;
+                                        cout << "\t\tZipcode       : " << tempZ  << endl;
+                                        cout << "\t\t=> Save New Member Y/N : ";
+                                        cin  >> save;
+
+                                        if(tolower(save == 'y')) {
+                                            srand(time(0));
+                                            id = 100'000'000 + rand() % 900'000'000;
+                                            cout << "\n\t\tMember Number " << id << " is assigned to ";
+                                            cout << first << " " << last << "." << endl;
+                                            memberList.upload_person(id, status, type, first, last, street, city, state, zip);
+                                        }
+                                        //needs to get resetted
+                                        long id = 0;
+                                        string first = "";
+                                        string last = "";
+                                        string type = ""; 
+                                        string status = ""; 
+                                        string street = ""; 
+                                        string city = "";
+                                        string state = "";
+                                        int zip = 0;
+                                            
+                                        
+                                        break;
+                                    case 2:
+                                        cout << "\t\tmanager menu action 2" << endl;
+                                        break;
+                                    case 3:
+                                        cout << "\n\t\tReturned to Manager Menu" << endl;
+                                        break;
+                                    default:
+                                        cout << "\n\t\tInvalid Option! Please try again!" << endl;
+                                }
+
+                            } while(userOption != 3);
+
                             break;
+
                         case 2:
                             cout << "\tmanager menu action 2" << endl;
                             break;
@@ -129,7 +247,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                             cout << "\n\tExiting Manager Menu, back to main menu" << endl;
                             break;
                         default:
-                            cout << "\n\tInvalid Option! Please try again! : " << endl;
+                            cout << "\n\tInvalid Option! Please try again!" << endl;
                     }
                 } while(userOption != 5);
             }
@@ -195,6 +313,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
             cout << "Invalid Option! Please try again! : " << endl;
 
     }
+
+    cout << "\nTESTING TO SEE IF ADD WORKED - memberList" << endl;
+    memberList.display_people();
 }
 
 //KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
@@ -228,6 +349,13 @@ void managerMenu() {
     cout << "\t5- Return to Main Menu" << endl;
 }
 
+void manageMembersMenu() {
+    cout << "\n\t\t**** Manage Members Menu ****" << endl;
+    cout << "\t\t1- Create New Member Record" << endl;
+    cout << "\t\t2- Update/Inactivate Member Record" << endl;
+    cout << "\t\t3- Return to Manager Menu" << endl;
+}
+
 void displayWelcomeMsg() {
     cout << "\nWelcome to the ChocAn interface!" << endl;
 }
@@ -236,185 +364,3 @@ void displayExitMsg() {
     cout << "\nThank you for using the ChocAn interface!" << endl;
 }
 
-//KP just removing the interface for now to reduce complexity
-/*
-void Interface::begin() {
-
-    //update names accordingly + the files are in text-doucments folder
-    //need to figure out how we load in in when from different folder
-    //string providerFile = "provider_details.txt";
-    //string memberFile = "member_details.txt";
-
-    providerList;
-    memberList;
-
-    //temp load from file's
-    //providerList.loadFromFile(providerFile);
-    //memberList.loadFromFile(memberList);
-
-    int userOption = 0;
-
-    displayWelcomeMsg();
-
-    do {
-        displayMainMenu();
-        cout << "\n=> Option: ";
-        userOption = read_int();    //some data validation
-        exeCmd(userOption, memberList, providerList);
-    } while(userOption != 3);
-
-    displayExitMsg();
-}
-
-//KP - execute the options of user, we'll update the vectors to vector<User> respectively 
-void Interface::exeCmd(int option, vector<Person> & memberList, vector<Person> & providerList) {
-    int userOption = 0;
-    int password = 0;
-  
-
-    switch(option) {
-
-        //manager login, then if valid we prompt them with manager menu
-        case 1:
-            password = 0;
-            //check if valid manager
-            cout << "\n\tManager Login!" << endl;
-            cout << "\tEnter manager password: (its 1111, add func later)";
-            cin  >> password;
-
-            // we can maybe have a utility functin that checks for password
-            //just a temporary for now, PASSWORD is global in utilities.h
-            //if valid, proceed with manager menu
-            if(password == _PASSWORD) {
-                do {
-                    managerMenu();
-                    cout << "\n\t=> Option: ";
-                    userOption = read_int();
-
-                    switch(userOption) {
-                        case 1:
-                            cout << "\tmanager menu action 1" << endl;
-                            break;
-                        case 2:
-                            cout << "\tmanager menu action 2" << endl;
-                            break;
-                        case 3:
-                            cout << "\tmanager menu action 3" << endl;
-                            break;
-                        case 4:
-                            cout << "\tmanager menu action 4" << endl;
-                            break;
-                        case 5:
-                            cout << "\n\tExiting Manager Menu, back to main menu" << endl;
-                            break;
-                        default:
-                            cout << "\n\tInvalid Option! Please try again! : " << endl;
-                    }
-                } while(userOption != 5);
-            }
-            else {
-                cout << "\n\tInvalid password! Back to main menu!" << endl;
-                //we can prompt them to try again or just break back to main menu
-                break;
-            }
-
-            break;
-
-        //check if valid provider, then prompt providerMenu
-        case 2:
-            password = 0;
-            //check if valid provider
-            cout << "\n\tProvider Login!" << endl;
-            cout << "\tEnter provider password: (its 1111) - add func later: ";
-            cin  >> password;
-
-            // we can maybe have a utility functin that checks for password
-            //just a temporary for now, PASSWORD is global in utilities.h
-            //if valid, proceed with manager menu
-            if(password == _PASSWORD) {
-                do {
-                    providerMenu();
-                    cout << "\n\t=> Option: ";
-                    userOption = read_int();
-
-                    switch(userOption) {
-                        case 1:
-                            cout << "\tprovider menu action 1" << endl;
-                            break;
-                        case 2:
-                            cout << "\tprovider menu action 2" << endl;
-                            break;
-                        case 3:
-                            cout << "\tprovider menu action 3" << endl;
-                            break;
-                        case 4:
-                            cout << "\tprovider menu action 4" << endl;
-                            break;
-                        case 5:
-                            cout << "\n\tExiting Provider Menu, back to main menu" << endl;
-                            break;
-                        default:
-                            cout << "\n\tInvalid Option! Please try again! : " << endl;
-                    }
-                } while(userOption != 5);
-            }
-            else {
-                cout << "\n\tInvalid password! Back to main menu!" << endl;
-                //we can prompt them to try again or just break back to main menu
-                break;
-            }
-
-            break;
-
-
-        case 3:
-            cout << "\nExiting Main Menu!" << endl;
-            break;
-    
-        default:
-            cout << "Invalid Option! Please try again! : " << endl;
-
-    }
-}
-
-//KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
-//later on
-void Interface::displayMainMenu() {
-    cout << "\n**** Main Menu ****" << endl;
-    cout << "\t1- Manager Login" << endl;
-    cout << "\t2- Provider Login" << endl;
-    cout << "\t3- Quit" << endl;
-}
-
-//KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
-//later on
-void Interface::providerMenu() {
-    cout << "\n\t**** Provider Menu ****" << endl;
-    cout << "\t\t1- Validate Members" << endl;
-    cout << "\t\t2- Enter Service Details" << endl;
-    cout << "\t\t3- View Service History" << endl;
-    cout << "\t\t4- View Service Directory" << endl;
-    cout << "\t\t5- Return to Main Menu" << endl;
-}
-
-//KP - lmk if we need to remove the tabs, just doing it cuz it'll be easier to naviagte 
-//later on
-void Interface::managerMenu() {
-    cout << "\n\t**** Manager Menu ****" << endl;
-    cout << "\t\t1- Manage Members" << endl;
-    cout << "\t\t2- Manage Providers" << endl;
-    cout << "\t\t3- Generate Provider Report" << endl;
-    cout << "\t\t4- Generate Member Report" << endl;
-    cout << "\t\t5- Return to Main Menu" << endl;
-}
-
-
-
-void Interface::displayWelcomeMsg() {
-    cout << "\nWelcome to the ChocAn interface!" << endl;
-}
-
-void Interface::displayExitMsg() {
-    cout << "\nThank you for using the ChocAn interface!" << endl;
-}
-*/

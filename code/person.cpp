@@ -1,9 +1,7 @@
 #include "person.h"
-using namespace std;
 
 //Default Contructor
-Person::Person()
-{	
+Person::Person() {	
 	ID = 0;
 	status = "";
 	type = "";
@@ -17,8 +15,7 @@ Person::Person()
 
 //Contructor with Arguments
 Person::Person(const long & id, const string & i_status, const string & i_type, const string & first, const string & last
-, const string & s_address, const string & i_city, const string & i_state, const int & zip)
-{
+, const string & s_address, const string & i_city, const string & i_state, const int & zip) {
 	ID = id;
 	status = i_status;
 	type = i_type;
@@ -31,8 +28,7 @@ Person::Person(const long & id, const string & i_status, const string & i_type, 
 }
 
 //Destructor - Sets everything to 0 or empty string
-Person::~Person()
-{
+Person::~Person() {
 	ID = 0;
 	status = "";
 	type = "";
@@ -45,8 +41,7 @@ Person::~Person()
 }
 
 //Compares only the person's ID to the inputted ID
-int Person::compare_ID(const long & id)
-{
+int Person::compare_ID(const long & id) {
 	if (ID == id) return 0;
 	else if (ID < id) return -1;
 
@@ -55,8 +50,7 @@ int Person::compare_ID(const long & id)
 
 //Verifies if there is a member, if no match return 1. If ID matches but the member is suspended return 2
 //if ID matches but member is inactive, return 3. If member is active returns 0
-int Person::verify_person(const long & id)
-{
+int Person::verify_person(const long & id) {
 	if (compare_ID(id) == 0)
 	{
 		if (status.compare(S_STAT) == 0) return 2;
@@ -66,8 +60,7 @@ int Person::verify_person(const long & id)
 	return 1;
 }
 
-int Person::display_person(void) const
-{
+int Person::display_person(void) const {
 	cout << "Person:\t" << first_name << " " << last_name << endl;
 	cout << "ID:\t" << ID << endl;
 	cout << "Status:\t" << status << endl;
@@ -81,8 +74,7 @@ int Person::display_person(void) const
 	return 0;
 }
 
-int Person::retrieve_info(Person & to_fill)
-{
+int Person::retrieve_info(Person & to_fill) {
 	to_fill.ID = ID;
 	to_fill.status = status;
 	to_fill.type = type;

@@ -1,8 +1,7 @@
 #pragma once
 #include "service.h"
 
-class SerVec
-{
+class SerVec {
 	public:
 		int upload_services(const string & filename);	
 		

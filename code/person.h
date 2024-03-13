@@ -1,13 +1,11 @@
 #pragma once
 #include "utilities.h"
 
-
 #define A_STAT "Active"
 #define I_STAT "Inactive"
 #define S_STAT "Suspended"
 
-class Person
-{
+class Person {
 	public:
 		Person();
 		Person(const long & id, const string & i_status, const string & i_type, const string & first, const string & last

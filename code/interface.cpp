@@ -51,6 +51,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
     switch(option) {
 
+
+
+        //------------------------------------------------------------------------------------------------------
         case 1:
             //keep this for reset each time
             password = 0;
@@ -85,12 +88,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                                         for(i = 0; i < 6 && input != "EXIT"; i++) {
                                             cout << "\n\t\tNEW MEMBER DETAILS" << endl;
-                                            cout << "\t\tFirst Name    : " << first  << endl;
-                                            cout << "\t\tLast Name     : " << last   << endl;
-                                            cout << "\t\tStreet Address: " << street << endl;
-                                            cout << "\t\tCity          : " << city   << endl;
-                                            cout << "\t\tState         : " << state  << endl;
-                                            cout << "\t\tZipcode       : " << tempZ  << endl;
+                                            printDetails(first, last, street, city, state, tempZ);
 
                                             if(i == 0) {
                                                 cout << "\t\t=> Enter First Name : ";
@@ -135,12 +133,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         }
 
                                         cout << "\n\t\tNEW MEMBER DETAILS" << endl;
-                                        cout << "\t\tFirst Name    : " << first  << endl;
-                                        cout << "\t\tLast Name     : " << last   << endl;
-                                        cout << "\t\tStreet Address: " << street << endl;
-                                        cout << "\t\tCity          : " << city   << endl;
-                                        cout << "\t\tState         : " << state  << endl;
-                                        cout << "\t\tZipcode       : " << tempZ  << endl;
+                                        printDetails(first, last, street, city, state, tempZ);
                                         cout << "\t\t=> Save New Member Y/N : ";
                                         cin  >> save;
 
@@ -161,6 +154,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         street = ""; 
                                         city = "";
                                         state = "";
+                                        tempZ = "";
                                         zip = 0;
                                         save = '\0';
                                             
@@ -202,12 +196,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                                         for(i = 0; i < 6 && input != "EXIT"; i++) {
                                             cout << "\n\t\tNEW PROVIDER DETAILS" << endl;
-                                            cout << "\t\tFirst Name    : " << first  << endl;
-                                            cout << "\t\tLast Name     : " << last   << endl;
-                                            cout << "\t\tStreet Address: " << street << endl;
-                                            cout << "\t\tCity          : " << city   << endl;
-                                            cout << "\t\tState         : " << state  << endl;
-                                            cout << "\t\tZipcode       : " << tempZ  << endl;
+                                            printDetails(first, last, street, city, state, tempZ);
 
                                             if(i == 0) {
                                                 cout << "\t\t=> Enter First Name : ";
@@ -252,12 +241,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         }
 
                                         cout << "\n\t\tNEW PROVIDER DETAILS" << endl;
-                                        cout << "\t\tFirst Name    : " << first  << endl;
-                                        cout << "\t\tLast Name     : " << last   << endl;
-                                        cout << "\t\tStreet Address: " << street << endl;
-                                        cout << "\t\tCity          : " << city   << endl;
-                                        cout << "\t\tState         : " << state  << endl;
-                                        cout << "\t\tZipcode       : " << tempZ  << endl;
+                                        printDetails(first, last, street, city, state, tempZ);
                                         cout << "\t\t=> Save New Provider Y/N : ";
                                         cin  >> save;
 
@@ -278,6 +262,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         street = ""; 
                                         city = "";
                                         state = "";
+                                        tempZ = "";
                                         zip = 0;
                                         save = '\0';
                                             
@@ -325,6 +310,20 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
             break;
 
+
+
+
+
+
+
+
+
+
+
+
+
+        //----------------------------------------------------------------------------------------------------
+        //ALL OPTION 2 - PROVIDER STUFF
         case 2:
             //keep this for reset each time
             password = 0;
@@ -367,15 +366,18 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                     }
                 } while(userOption != 5);
             }
-            else {
-                cout << "\n\tInvalid password! Back to main menu!" << endl;
-                //we can prompt them to try again or just break back to main menu
-                break;
-            }
-
             break;
 
 
+
+
+
+
+
+
+
+
+        //-----------------------------------------------------------------------------------------------------
         case 3:
             cout << "\nExiting Main Menu!" << endl;
             break;
@@ -423,6 +425,15 @@ void manageProvidersMenu() {
     cout << "\t\t1- Create New Provider Record" << endl;
     cout << "\t\t2- Update/Inactivate Provider Record" << endl;
     cout << "\t\t3- Return to Manager Menu" << endl;
+}
+
+void printDetails(string first, string last, string street, string city, string state, string tempZ) {
+    cout << "\t\tFirst Name    : " << first  << endl;
+    cout << "\t\tLast Name     : " << last   << endl;
+    cout << "\t\tStreet Address: " << street << endl;
+    cout << "\t\tCity          : " << city   << endl;
+    cout << "\t\tState         : " << state  << endl;
+    cout << "\t\tZipcode       : " << tempZ  << endl;
 }
 
 void displayWelcomeMsg() {

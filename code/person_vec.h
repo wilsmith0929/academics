@@ -6,8 +6,7 @@
 #define MAN_TYPE "MANAGER"
 #define PEOPLE_FILE "text-documents/people.txt"
 
-class PersonVec
-{
+class PersonVec {
 	public:
 		//Azeezah - I might change this add function to be different than the upload
 		//person function

@@ -1,10 +1,7 @@
 #pragma once
 #include "utilities.h"
 
-using std::string;
-
-class Service 
-{
+class Service {
 	public:
 		Service();
 		Service(const int & id, const string & i_name, const float & i_cost);

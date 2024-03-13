@@ -2,16 +2,14 @@
 
 
 int PersonVec::add_person(const long & id, const string & i_type, const string & first, const string & last
-, const string & s_address, const string & i_city, const string & i_state, const int & zip)
-{
+, const string & s_address, const string & i_city, const string & i_state, const int & zip) {
 	Person to_add(id, A_STAT, i_type, first, last, s_address, i_city, i_state, zip);
 	per_vec.push_back(to_add);
 
 	return 0;
 }
 
-int PersonVec::update_person(const long & to_find, const Person & to_change)
-{
+int PersonVec::update_person(const long & to_find, const Person & to_change) {
 	find_person(to_find);
 
 	hold->change_person_info(to_change);
@@ -20,8 +18,8 @@ int PersonVec::update_person(const long & to_find, const Person & to_change)
 }
 
 int PersonVec::upload_person(const long & id, const string & i_status, const string & i_type, const string & first, const string & last
-, const string & s_address, const string & i_city, const string & i_state, const int & zip)
-{
+, const string & s_address, const string & i_city, const string & i_state, const int & zip) {
+
 	Person to_upload(id, i_status, i_type, first, last, s_address, i_city, i_state, zip);
 	per_vec.push_back(to_upload);
 
@@ -31,8 +29,7 @@ int PersonVec::upload_person(const long & id, const string & i_status, const str
 //Verifies the person or the ID passed in.
 //Refer to the verify_person function in the person class for return 
 //values.
-int PersonVec::verify_person(const long to_compare)
-{
+int PersonVec::verify_person(const long to_compare) {
 	int result = -1;
 	vector<Person>::iterator it;
 	
@@ -49,8 +46,7 @@ int PersonVec::verify_person(const long to_compare)
 }
 
 //Find the person, then holds the person object by pointing hold at it.
-int PersonVec::find_person(const long to_compare)
-{
+int PersonVec::find_person(const long to_compare) {
 	unsigned int size = per_vec.size();
 	
 	for (unsigned int i = 0; i < size; ++i)
@@ -64,8 +60,7 @@ int PersonVec::find_person(const long to_compare)
 	return 1;	
 }
 
-int PersonVec::display_people(void) const
-{
+int PersonVec::display_people(void) const {
 	unsigned int size = per_vec.size();
 	for (unsigned int i = 0; i < size; ++i)
 	{
@@ -76,73 +71,67 @@ int PersonVec::display_people(void) const
 }
 
 // This is not a method or PersonVec - Call this function to upload members, managers, and providers
-long upload_people(PersonVec & members, PersonVec & providers, PersonVec & managers)
-{
-        string filename = PEOPLE_FILE;
-        ifstream fin;
+long upload_people(PersonVec & members, PersonVec & providers, PersonVec & managers) {
+    string filename = PEOPLE_FILE;
+    ifstream fin;
 
-        long highest_ID = 0;
+    long highest_ID = 0;
 
-        long ID = 0;
-        string id_buf = "";
-        string status = "";
-        string type = "";
-        string first_name = "";
-        string last_name = "";
-        string street_add = "";
-        string city = "";
-        string state = "";
-        int zip_code = 0;
+    long ID = 0;
+    string id_buf = "";
+    string status = "";
+    string type = "";
+    string first_name = "";
+    string last_name = "";
+    string street_add = "";
+    string city = "";
+    string state = "";
+    int zip_code = 0;
 
-        fin.open("people.txt");
-        //if (!fin) return 1;
-		if(!fin) {
-			cerr << "\nFailed to open! Exitting!" << endl;
-			exit(0);
-		}
-        else
-        {
-                while(!fin.eof())
-                {
-                        getline(fin, id_buf, '|');
-                        getline(fin, first_name, '|');
-                        getline(fin, last_name, '|');
-                        getline(fin, status, '|');
-                        getline(fin, type, '|');
-                        getline(fin, street_add, '|');
-                        getline(fin, city, '|');
-                        getline(fin, state, '|');
+    fin.open("people.txt");
+    
+	if(!fin) {
+		cerr << "\nFailed to open! Exitting!" << endl;
+		exit(0);
+	}
+    else {
+        while(!fin.eof()) {
+            getline(fin, id_buf, '|');
+            getline(fin, first_name, '|');
+            getline(fin, last_name, '|');
+            getline(fin, status, '|');
+            getline(fin, type, '|');
+            getline(fin, street_add, '|');
+            getline(fin, city, '|');
+            getline(fin, state, '|');
 
-                        fin >> zip_code;
-                        fin.ignore(20, '\n');
+            fin >> zip_code;
+            fin.ignore(20, '\n');
 
-                        ID = stol(id_buf);
+            ID = stol(id_buf);
 
 
-                        if (type.compare(MAN_TYPE) == 0)
-                        {
-                                managers.upload_person(ID, status, type, first_name, last_name, street_add, city, state, zip_code);
-                        }
-                        else if (type.compare(MEM_TYPE) == 0)
-                        {
-                                members.upload_person(ID, status, type, first_name, last_name, street_add, city, state, zip_code);
-                        }
-                        else
-                        {
-                                providers.upload_person(ID, status, type, first_name, last_name, street_add, city, state, zip_code);
-                        }
+            if (type.compare(MAN_TYPE) == 0)
+            {
+                managers.upload_person(ID, status, type, first_name, last_name, street_add, city, state, zip_code);
+            }
+            else if (type.compare(MEM_TYPE) == 0)
+            {
+                members.upload_person(ID, status, type, first_name, last_name, street_add, city, state, zip_code);
+            }
+            else
+            {
+                providers.upload_person(ID, status, type, first_name, last_name, street_add, city, state, zip_code);
+            }
+            if (ID > highest_ID)
+            {
+                highest_ID = ID;
+            }
 
-                        if (ID > highest_ID)
-
-                        {
-                                highest_ID = ID;
-                        }
-
-                        fin.peek();
-                }
+            fin.peek();
+            }
         }
 
-        fin.close();
-
-        return highest_ID;
+    fin.close();
+    return highest_ID;
 }

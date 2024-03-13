@@ -4,8 +4,7 @@
 
 using namespace std;
 
-int SerVec::upload_services(const string & filename)
-{
+int SerVec::upload_services(const string & filename) {
 	ifstream fin;
 	int ser_id;
 	string id_buf;
@@ -36,8 +35,7 @@ int SerVec::upload_services(const string & filename)
 	return 0;
 }
 
-int SerVec::display_services(void) const
-{
+int SerVec::display_services(void) const {
 	unsigned int size = ser_vec.size();
 	for (unsigned int i = 0; i < size; ++i)
 	{
@@ -47,8 +45,7 @@ int SerVec::display_services(void) const
 	return 0;
 }
 
-int SerVec::verify_service(const int to_find)
-{
+int SerVec::verify_service(const int to_find) {
 	unsigned int size = ser_vec.size();
 	for (unsigned int i = 0; i < size; ++i)
 	{
@@ -63,16 +60,15 @@ int SerVec::verify_service(const int to_find)
 	return 1;
 }
 
-int SerVec::add_service(const int & id, const string & name, const float & cost)
-{
+int SerVec::add_service(const int & id, const string & name, const float & cost) {
 	Service to_add(id, name, cost);
 
 	ser_vec.push_back(to_add);
 	
 	return 1;
 }
-int SerVec::display_found_service(void) const
-{
+
+int SerVec::display_found_service(void) const {
 	hold->display_service();
 	return 0;
 }

@@ -84,3 +84,52 @@ void printServices(const string & filename) {
   fin.close();
 }
 
+void generateProviderReport(string & filename)
+{
+        ifstream inputFile(filename);
+        string line;
+        map<string, vector<vector<string>>> providerRecords;
+ 
+        //Ignoring the first line specifying each part
+        getline(inputFile, line);
+ 
+        //Read input file and parse the service records
+        while(getline(inputFile, line)) {
+             size_t pos = 0;
+             string field;
+             vector<string> recordFields;
+              while((pos = line.find('|')) != string::npos) {
+                 field = line.substr(0, pos);
+                 recordFields.push_back(field);
+                 line.erase(0, pos + 1);
+              }
+              recordFields.push_back(line);
+              providerRecords[recordFields[6]].push_back(recordFields);
+         }
+ 
+         //Generate reports for each provider
+         for (const auto &[providerName, records]: providerRecords) {
+              ofstream outputFile(providerName + "_report.txt");
+              outputFile << "First Name     : " << providerName << endl;
+              outputFile << "Street Address : " << records.front()[7] << endl;
+              outputFile << "City           : " << records.front()[8] << endl;
+              outputFile << "State          : " << records.front()[9] << endl;
+              outputFile << "Zip Code       : " << records.front()[10] << endl;
+              outputFile << endl;
+              outputFile << "Service Date       Record Date Member Name   Member#   Service Code Service Fee" << endl;
+ 
+              //Write service records
+              double totalFee = 0;
+              for (const auto& record : records) {
+                outputFile << record[1] << " " << record[4] << " "
+                           << record[12] << " " << record[11] << " "
+                           << record[0] << "\t" << record[3] << endl;
+                totalFee += stod(record[3]);
+              }
+              outputFile << endl;
+              outputFile << "Total number of consultations : " << records.size() << endl;
+              outputFile << "Total fee for the week        : " << totalFee << endl;
+              outputFile.close();
+            }
+}
+

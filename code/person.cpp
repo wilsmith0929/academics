@@ -74,6 +74,20 @@ int Person::display_person(void) const {
 	return 0;
 }
 
+//KP - need it for the update/deactivate function
+//for some reason the status display is weird weird
+int Person::display_person_formatted() const {
+	cout << "\t\tMember Number : " << ID << endl;
+	cout << "\t\tFirst Name    : " << first_name  << endl;
+    cout << "\t\tLast Name     : " << last_name   << endl;
+    cout << "\t\tStreet Address: " << street_add << endl;
+    cout << "\t\tCity          : " << city   << endl;
+    cout << "\t\tState         : " << state  << endl;
+    cout << "\t\tZipcode       : " << zip_code  << endl;
+	cout << "\t\tStatus	  : " << status << endl;
+	return 0;
+}
+
 int Person::retrieve_info(Person & to_fill) {
 	to_fill.ID = ID;
 	to_fill.status = status;

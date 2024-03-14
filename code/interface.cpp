@@ -157,6 +157,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         tempZ = "";
                                         zip = 0;
                                         save = '\0';
+                                        i = 0;
                                             
                                         break;
                                     case 2:
@@ -164,15 +165,112 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         cout << "\n\t\tSEARCH MEMBER" << endl;
                                         cout << "\t\t=> Enter Member Number : ";
                                         cin  >> id;
-                                        check = memberList.find_person(id);
+                                        check = memberList.retrieve_person(id, tempMember);
                                         while(check != 0) {
                                             cout << "\t\tMEMBER not found. Check the number and try again" << endl;
                                             cout << "\t\t=> Enter Member Number : ";
                                             cin  >> id;
                                             check = memberList.find_person(id);
                                         }
+                                        
+                                        for(i = 0; i < 7 && input != "EXIT"; i++) {
+                                            cout << "\n\t\tMEMBER DETAILS" << endl;
+                                            cout << "\t\tHit enter to leave as is or update with text" << endl;
+                                            tempMember.display_person_formatted();
 
-                                        cout << "\t\tMember found" << endl;
+                                            if(i == 0) {
+                                                cout << "\t\t=> Change First Name : ";
+                                                cin  >> input;
+                                                first = input;
+                                            }
+                                            else if(i == 1) {
+                                                cout << "\t\t=> Change Last Name : ";
+                                                cin  >> input;
+                                                last = input;
+                                            }
+                                            else if(i == 2) {
+                                                cout << "\t\t=> Change Address : ";
+                                                cin.ignore();
+                                                getline(cin, input);
+                                                street = input;
+                                            }
+                                            else if(i == 3) {
+                                                cout << "\t\t=> Change City : ";
+                                                cin  >> input;
+                                                city = input;
+                                            }    
+                                            else if(i == 4) {
+                                                cout << "\t\t=> Change State : ";
+                                                cin  >> input;
+                                                state = input;
+                                            }
+                                            else if(i == 5) {
+                                                cout << "\t\t=> Change Zipcode : ";
+                                                cin  >> input;
+                                                tempZ = input;
+                                                zip = stoi(input);
+                                            }
+                                            else if(i == 6) {
+                                                cout << "\t\t=> Change Status : ";
+                                                cin  >> input;
+                                                status = input;
+                                            }
+                                        }
+
+                                        //status = "Active";
+                                        type = "MEMBER";
+                                        if(input == "EXIT") {
+                                            cout << "\n\t\tReturned to Manager Menu" << endl;
+                                            break;
+                                        }
+
+                                        cout << "\n\t\tMEMBER DETAILS" << endl;
+                                        tempMember.display_person_formatted();
+                                        cout << "\t\t=> Save New Member Y/N : ";
+                                        cin  >> save;
+
+                                        if(tolower(save == 'y')) {
+                                            if(!first.empty()) {
+                                                tempMember.change_first_name(first);
+                                            }
+                                            if(!last.empty()) {
+                                                tempMember.change_last_name(last);
+                                            }
+                                            if(!street.empty()) {
+                                                tempMember.change_street_add(street);
+                                            }
+                                            if(!city.empty()) {
+                                                tempMember.change_city(city);
+                                            }
+                                            if(!state.empty()) {
+                                                tempMember.change_state(state);
+                                            }
+                                            if(!tempZ.empty()) {
+                                                tempMember.change_zip(zip);
+                                            }
+                                            if(!status.empty()) {
+                                                tempMember.change_status(status);
+                                            }
+                                            memberList.update_person(id, tempMember);
+
+                                            cout << "\n\t\tMember Deatils Updated as Follows" << endl;
+                                            tempMember.display_person_formatted();
+                                        }
+
+                                        //needs to get resetted
+                                        id = 0;
+                                        first = "";
+                                        last = "";
+                                        type = ""; 
+                                        status = ""; 
+                                        street = ""; 
+                                        city = "";
+                                        state = "";
+                                        tempZ = "";
+                                        zip = 0;
+                                        save = '\0';
+                                        i = 0;
+
                                         break;
                                     case 3:
                                         cout << "\n\t\tReturned to Manager Menu" << endl;
@@ -386,6 +484,8 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
             cout << "Invalid Option! Please try again!" << endl;
 
     }
+
+
 }
 
 void displayMainMenu() {

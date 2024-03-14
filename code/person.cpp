@@ -84,7 +84,7 @@ int Person::display_person_formatted() const {
     cout << "\t\tCity          : " << city   << endl;
     cout << "\t\tState         : " << state  << endl;
     cout << "\t\tZipcode       : " << zip_code  << endl;
-	cout << "\t\tStatus	  : " << status << endl;
+	cout << "\t\tStatus	      : " << status << endl;
 	return 0;
 }
 

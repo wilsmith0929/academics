@@ -1,3 +1,4 @@
+123456789|Group Seven|Active|MANAGER|12345 group St WE|Portland|OR|99999
 345678901|Sahardiid|Buuni|Active|MANAGER|12249 Astronaut Ave NE|Salem|OR|97305
 345678902|Davontay|Banks|Active|MANAGER|12249 NE 55th Avenue|Portland|OR|97213
 345678903|Michael|Hillis|Active|MANAGER|12210  SE 105th Ave|Portland|OR|97266
@@ -7,6 +8,7 @@
 345678907|Jamie|Stein|Active|MANAGER|12191 Box 30412|Portland|OR|97294
 345678908|Todd|Ourston|Active|MANAGER|12190 SE 60th Ave|Portland|OR|97215
 345678909|Charles|Button|Active|MANAGER|12190 Fir Grove Ln|Stayton|OR|97383
+123456789|Group seven member|Active|MEMBER|54321 SE street|Portland|WA|77777
 345678910|Shannon|Sprague|Active|MEMBER|13435 NE 86th Ave|Portland|OR|97220
 345678911|Ezechiel|Nzambinana|Active|MEMBER|13419 W Burnside St|Portland|OR|97209
 345678912|Astra|Togbah|Active|MEMBER|13399 NE 122nd Ave Apt 50|Portland|OR|97230

@@ -1,16 +1,12 @@
 #include "interface.h"
 
-//KP - removing the interface class for now just to get things situated and compiling rq
-
 void begin() {
-
     PersonVec memberList;
     PersonVec providerList;
     PersonVec managerList;
 
     upload_people(memberList, providerList, managerList);
     int userOption = 0;
-
     displayWelcomeMsg();
 
     do {
@@ -23,7 +19,6 @@ void begin() {
     displayExitMsg();
 }
 
-//KP - execute the options of user, we'll update the vectors to vector<User> respectively 
 void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, PersonVec & managerList) {
     int userOption = 0;
     long password = 0;
@@ -32,21 +27,19 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
     //all of these variables are required for the manager members menu - pls leave them here
     //if not, theres jump errors
     long id = 0;
-    string first = "";
-    string last = "";
-    string type = "MEMBER"; 
-    string status = "Active"; 
+    string first  = "";
+    string last   = "";
+    string type   = ""; 
+    string status = ""; 
     string street = ""; 
-    string city = "";
-    string state = "";
-    string tempZ = "";
+    string city   = "";
+    string state  = "";
+    string tempZ  = "";
     int zip = 0;
-    int i = 0;
+    int i   = 0;
 
     string input;
     char save = '\0';
-
-    //all of these variables are for inactivating member
     Person tempMember;
 
     switch(option) {
@@ -55,12 +48,11 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
         //------------------------------------------------------------------------------------------------------
         case 1:
-            //keep this for reset each time
+
             password = 0;
-            //check if valid manager
             cout << "\n\tMANAGER LOGIN" << endl;
             cout << "\t=> Enter Manager ID Number : ";
-            cin  >> password;
+            password = read_long();
             check = managerList.verify_person(password);
 
             while(check != 0) {
@@ -70,6 +62,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                 check = managerList.verify_person(password);
             }
             
+            //if valid manager
             if(check == 0) {
                 do {
                     managerMenu();
@@ -77,6 +70,8 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                     userOption = read_int();
 
                     switch(userOption) {
+
+                        //--------------------------------MANAGER MENU OPTION 1 MANAGE MEMBERS--------------------------------                        
                         case 1:
                             do {
                                 manageMembersMenu();
@@ -84,6 +79,8 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                 userOption = read_int();
 
                                 switch(userOption) {
+
+                                    //----------------------------------NEW MEMBER-------------------------------------------
                                     case 1:
 
                                         for(i = 0; i < 6 && input != "EXIT"; i++) {
@@ -92,33 +89,32 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                                             if(i == 0) {
                                                 cout << "\t\t=> Enter First Name : ";
-                                                cin  >> input;
+                                                input = read_string();
                                                 first = input;
                                             }
                                             else if(i == 1) {
                                                 cout << "\t\t=> Enter Last Name : ";
-                                                cin  >> input;
+                                                input = read_string();
                                                 last = input;
                                             }
                                             else if(i == 2) {
                                                 cout << "\t\t=> Enter Street Address : ";
-                                                cin.ignore();
-                                                getline(cin, input);
+                                                input = read_string();
                                                 street = input;
                                             }
                                             else if(i == 3) {
                                                 cout << "\t\t=> Enter City : ";
-                                                cin  >> input;
+                                                input = read_string();
                                                 city = input;
                                             }    
                                             else if(i == 4) {
                                                 cout << "\t\t=> Enter State : ";
-                                                cin  >> input;
+                                                input = read_string();
                                                 state = input;
                                             }
                                             else if(i == 5) {
                                                 cout << "\t\t=> Enter Zipcode : ";
-                                                cin  >> input;
+                                                input = read_string();
                                                 tempZ = input;
                                                 zip = stoi(input);
                                             }
@@ -135,7 +131,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         cout << "\n\t\tNEW MEMBER DETAILS" << endl;
                                         printDetails(first, last, street, city, state, tempZ);
                                         cout << "\t\t=> Save New Member Y/N : ";
-                                        cin  >> save;
+                                        save = read_char();
 
                                         if(tolower(save == 'y')) {
                                             srand(time(0));
@@ -147,24 +143,25 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                                         //needs to get resetted
                                         id = 0;
-                                        first = "";
-                                        last = "";
-                                        type = ""; 
+                                        first  = "";
+                                        last   = "";
+                                        type   = ""; 
                                         status = ""; 
                                         street = ""; 
-                                        city = "";
-                                        state = "";
-                                        tempZ = "";
+                                        city   = "";
+                                        state  = "";
+                                        tempZ  = "";
                                         zip = 0;
                                         save = '\0';
                                         i = 0;
-                                            
                                         break;
+
+                                    //---------------------------------------UPDATE/DEACTIVATE-------------------------------
                                     case 2:
                                         memberList.display_people();
                                         cout << "\n\t\tSEARCH MEMBER" << endl;
                                         cout << "\t\t=> Enter Member Number : ";
-                                        cin  >> id;
+                                        id = read_long();
                                         check = memberList.retrieve_person(id, tempMember);
                                         while(check != 0) {
                                             cout << "\t\tMEMBER not found. Check the number and try again" << endl;
@@ -175,44 +172,50 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         
                                         for(i = 0; i < 7 && input != "EXIT"; i++) {
                                             cout << "\n\t\tMEMBER DETAILS" << endl;
-                                            cout << "\t\tHit enter to leave as is or update with text" << endl;
+                                            cout << "\n\t\tHit enter to leave as is or update with text" << endl << endl;
                                             tempMember.display_person_formatted();
 
                                             if(i == 0) {
                                                 cout << "\t\t=> Change First Name : ";
-                                                cin  >> input;
+                                                input = read_string();
+                                                if (input.empty()) continue;
                                                 first = input;
                                             }
                                             else if(i == 1) {
                                                 cout << "\t\t=> Change Last Name : ";
-                                                cin  >> input;
+                                                input = read_string();
+                                                if (input.empty()) continue;
                                                 last = input;
                                             }
                                             else if(i == 2) {
                                                 cout << "\t\t=> Change Address : ";
-                                                cin.ignore();
-                                                getline(cin, input);
+                                                input = read_string();
+                                                if (input.empty()) continue;
                                                 street = input;
                                             }
                                             else if(i == 3) {
                                                 cout << "\t\t=> Change City : ";
-                                                cin  >> input;
+                                                input = read_string();
+                                                if (input.empty()) continue;
                                                 city = input;
                                             }    
                                             else if(i == 4) {
                                                 cout << "\t\t=> Change State : ";
-                                                cin  >> input;
+                                                input = read_string();
+                                                if (input.empty()) continue;
                                                 state = input;
                                             }
                                             else if(i == 5) {
                                                 cout << "\t\t=> Change Zipcode : ";
-                                                cin  >> input;
+                                                input = read_string();
+                                                if (input.empty()) continue;
                                                 tempZ = input;
                                                 zip = stoi(input);
                                             }
                                             else if(i == 6) {
                                                 cout << "\t\t=> Change Status : ";
-                                                cin  >> input;
+                                                input = read_string();
+                                                if (input.empty()) continue;
                                                 status = input;
                                             }
                                         }
@@ -270,19 +273,19 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         zip = 0;
                                         save = '\0';
                                         i = 0;
-
                                         break;
+                                    
+                                    //------------------------------------RETURN TO MANAGER MENU--------------------------
                                     case 3:
                                         cout << "\n\t\tReturned to Manager Menu" << endl;
                                         break;
                                     default:
                                         cout << "\n\t\tInvalid Option! Please try again!" << endl;
                                 }
-
                             } while(userOption != 3);
-
                             break;
 
+                        //-------------------------MANAGER MENU OPTION 2 MANAGE PROVIDERS---------------------------------
                         case 2:
                             do {
                                 manageProvidersMenu();
@@ -290,8 +293,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                 userOption = read_int();
 
                                 switch(userOption) {
-                                    case 1:
 
+                                    //----------------------------------CREATE NEW PROVIDER--------------------------------
+                                    case 1:
                                         for(i = 0; i < 6 && input != "EXIT"; i++) {
                                             cout << "\n\t\tNEW PROVIDER DETAILS" << endl;
                                             printDetails(first, last, street, city, state, tempZ);

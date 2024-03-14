@@ -7,7 +7,21 @@ int read_int() {
   while(!cin || temp <= 0) {
     cin.clear();
     cin.ignore(MAX, '\n');
-    cout << "Invalid input! Try again: ";
+    cout << "\nInvalid input! Try again: ";
+    cin  >> temp;
+  }
+  cin.ignore(MAX, '\n');
+  return temp;
+}
+
+long read_long() {
+  //temp integer to be inputted
+  long temp = 0;
+  cin >> temp;
+  while(!cin || temp <= 0) {
+    cin.clear();
+    cin.ignore(MAX, '\n');
+    cout << "\nInvalid input! Try again: ";
     cin  >> temp;
   }
   cin.ignore(MAX, '\n');
@@ -21,7 +35,7 @@ char read_char() {
   while(!cin) {
     cin.clear();
     cin.ignore(MAX, '\n');
-    cout << "Invalid character! Try again: ";
+    cout << "\nInvalid character! Try again: ";
     cin  >> temp;
   }
   cin.ignore(MAX, '\n');
@@ -35,11 +49,21 @@ double get_double() {
   while(!cin || temp <= 0) {
     cin.clear();
     cin.ignore(MAX, '\n');
-    cout << "Invalid input! Try again: ";
+    cout << "\nInvalid input! Try again: ";
     cin  >> temp;
   }
   cin.ignore(MAX, '\n');
   return temp;
 }
 
+string read_string() {
+  //temp string to be inputted
+  string input;
+  getline(cin, input);
+  //while(input.find_first_not_of(' ') == string::npos) {
+  //  cout << "\nInvalid input! Try again: ";
+  //  getline(cin, input);
+  //}
+  return input;
+}
 

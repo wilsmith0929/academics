@@ -67,3 +67,20 @@ string read_string() {
   return input;
 }
 
+void printServices(const string & filename) {
+  ifstream fin(filename);
+
+  if (!fin) {
+    cerr << "Failed to open file " << filename << endl;
+    exit(0);
+    return;
+  }
+
+  string line;
+  while (getline(fin, line)) {
+    cout << "\t" << line << endl; 
+  }
+
+  fin.close();
+}
+

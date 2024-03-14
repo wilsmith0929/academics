@@ -4,7 +4,7 @@
 #define MEM_TYPE "MEMBER"
 #define PRO_TYPE "PROVIDER"
 #define MAN_TYPE "MANAGER"
-#define PEOPLE_FILE "people.txt"
+#define PEOPLE_FILE "../text-documents/people.txt"
 
 class PersonVec {
 	public:

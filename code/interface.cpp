@@ -260,7 +260,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                             } while(userOption != 3);
                             break;
 
-                        //---------------------------------------MANAGER MENU OPTION 2 - Manage Providers--------------------------------------------
+                        //--------------------------------MANAGER MENU OPTION 2 - MANAGE PROVIDERS-------------------------------------------------------
                         case 2:
                             do {
                                 manageProvidersMenu();
@@ -519,7 +519,10 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                         //---------------------------------------PROVIDER MENU OPTION 4 - View Service Directory-------------------------------------
                         case 4:
-                            cout << "\tprovider menu action 4 - View Service History" << endl;
+                            cout << "\n\tPROVIDER SERVICES OFFERED DIRECTORY" << endl;
+                            cout << "\n\tService Code | Service Name           | Service Fee" << endl;
+                            cout << "\t-----------------------------------------------------" << endl;
+                            printServices("../text-documents/services.txt");
                             break;
 
                         //---------------------------------------PROVIDER MENU OPTION 5 - Exit provider menu ----------------------------------------
@@ -566,7 +569,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 //    cout << "\t1- Validate Members"       << endl;                  //
 //    cout << "\t2- Enter Service Details"  << endl;                  //
 //    cout << "\t3- View Service History"   << endl;                  //
-//    cout << "\t4- View Service Directory" << endl;                  //
+//    cout << "\t4- View Service Directory" << endl;                  //DONE
 //    cout << "\t5- Return to Main Menu"    << endl;                  //DONE
 
 //    cout << "\n\t\t**** Manage Members Menu ****"    << endl;       //DONE

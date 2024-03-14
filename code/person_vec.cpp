@@ -104,7 +104,7 @@ long upload_people(PersonVec & members, PersonVec & providers, PersonVec & manag
     string state = "";
     int zip_code = 0;
 
-    fin.open("people.txt");
+    fin.open(filename);
     
 	if(!fin) {
 		cerr << "\nFailed to open! Exitting!" << endl;

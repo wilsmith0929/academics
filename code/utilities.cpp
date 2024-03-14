@@ -84,7 +84,7 @@ void printServices(const string & filename) {
   fin.close();
 }
 
-void generateProviderReport(string & filename)
+void generateProviderReport(const string & filename)
 {
         ifstream inputFile(filename);
         string line;
@@ -116,7 +116,7 @@ void generateProviderReport(string & filename)
               outputFile << "State          : " << records.front()[9] << endl;
               outputFile << "Zip Code       : " << records.front()[10] << endl;
               outputFile << endl;
-              outputFile << "Service Date       Record Date Member Name   Member#   Service Code Service Fee" << endl;
+              outputFile << "Service Date   Record Date          Member Name            Member#        Service Code     Service Fee" << endl;
  
               //Write service records
               double totalFee = 0;

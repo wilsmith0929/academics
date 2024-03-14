@@ -10,6 +10,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <cstdio>
+#include <map>
 using namespace std;
 
 const int MAX = 101;
@@ -21,3 +22,4 @@ long   read_long();
 char   read_char();
 string read_string();
 void printServices(const string & filename);
+void generateProviderReport(const string & filename);

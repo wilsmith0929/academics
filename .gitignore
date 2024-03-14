@@ -6,3 +6,5 @@ obj_files/
 
 # Ignore the ChocAnTerminal executable
 ChocAnTerminal
+
+main

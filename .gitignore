@@ -1,10 +1,10 @@
 # Ignore object files
 *.o
 
-# Ignore the obj_files directory
-obj_files/
+# Ignore all files and subdirectories inside the build directory
+build/*
+# But keep the build directory itself
+!build/
 
-# Ignore the ChocAnTerminal executable
-ChocAnTerminal
-
+# Ignore the main executable
 main

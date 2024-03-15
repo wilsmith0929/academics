@@ -1,6 +1,9 @@
 ----------------------------- Project Information -----------------------------
 
+
 -------------------------------- Unit Testing ---------------------------------
+
+
 The following set of instructions must be done in
 (.../cs-314-group-7-project/build/):
 - To start, run the two commands inside the quotations in the following order:
@@ -14,7 +17,10 @@ The following set of instructions must be done in
     - "cmake --build ."
 -------------------------------------------------------------------------------
 
+
 ----------------------------- Running the Program -----------------------------
+
+
 The following set of instructions must be done in (.../cs-314-group-7-project/code/):
 - To compile, run the command inside the quoations: "make main"
     - This will create an executable file called main using the Makefile in the /code/ directory
@@ -24,7 +30,11 @@ The following set of instructions must be done in (.../cs-314-group-7-project/co
 - To run the program: ./main
 -------------------------------------------------------------------------------
 
+
+
 ----------------------------- Cloning the Repository --------------------------
+
+
 - Cloning (via SSH):
     - git clone git@gitlab.cecs.pdx.edu:wilsmith/cs-314-group-7-project.git
 - Cloning (via HTTPS):

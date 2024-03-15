@@ -159,7 +159,7 @@ int generateProviderReport(map<string, vector<vector<string>>> & providerRecords
             result = checkIfFileEmptyAndOpenable(filename_to_write);
             outputFile.close();
         }
-        printProviderReport(providerRecords);
+        //printProviderReport(providerRecords);
     return result;
 }
 

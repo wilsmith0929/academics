@@ -21,8 +21,6 @@ void begin() {
 
 
 void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, PersonVec & managerList) {
-    map<string, vector<vector<string>>> providerRecords;
-    map<string, vector<vector<string>>> memberRecords;
     int userOption = 0;
     long password  = 0;
     int check      = 0;
@@ -42,6 +40,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
     string input = "";
     Person tempMember;
     Person tempProvider;
+    map<string, vector<vector<string>>> providerRecords;
+    map<string, vector<vector<string>>> memberRecords;
+    int reportResult = 0;
 
     switch(option) {
 
@@ -451,21 +452,25 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                 }
 
                             } while(userOption != 3);
-
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 3 - Generate Provider Report------------------------------------
                         case 3:
-                            generateProviderReport(providerRecords, "../text-documents/services_provided.txt");
-                            // Add switch cases here.
-                            printProviderReport(providerRecords);
+                            cout << "\n\tGenerate Provider Report" << endl << endl;
+                            reportResult = generateProviderReport(providerRecords, "../text-documents/services_provided.txt");
+                            if(reportResult == 2) {
+                                cout << "\n\t-- Provider Reports Emailed Sucessfully --" << endl;
+                                cout << "\n\tAll providers emailed:" << endl;
+                                printProviderReport(providerRecords);
+                            }
+                            else {
+                                cout << "\n\t-- Provider Reports Emailed Unsucessfully --" << endl;
+                            }
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 4 - Generate Member Report--------------------------------------
                         case 4:
-                            generateMemberReport(memberRecords, "../text-documents/services_provided.txt");
-                            // Add switch cases here.
-                            printMemberReport(memberRecords);
+                            //generateMemberReport("../text-documents/services_provided.txt");
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 5 - Exit Manager Menu ------------------------------------------
@@ -567,8 +572,8 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 //    cout << "\n\t**** Manager Menu ****"    << endl;                //DONE
 //    cout << "\t1- Manage Members"           << endl;                //DONE
 //    cout << "\t2- Manage Providers"         << endl;                //DONE
-//    cout << "\t3- Generate Provider Report" << endl;                //
-//    cout << "\t4- Generate Member Report"   << endl;                //
+//    cout << "\t3- Generate Provider Report" << endl;                //DONE //STILL NEEDS FORMATTING
+//    cout << "\t4- Generate Member Report"   << endl;                //DONE //STILL NEEDS FORMATTING
 //    cout << "\t5- Return to Main Menu"      << endl;                //DONE
 
 //    cout << "\n\t**** Provider Menu ****" << endl;                  //DONE

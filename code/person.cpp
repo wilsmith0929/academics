@@ -60,6 +60,14 @@ int Person::verify_person(const long & id) {
 	return 1;
 }
 
+int Person::display_member_provided_service(void)
+{
+	cout << "Member Number : " << ID << endl;
+	cout << "Member Name   : " << first_name << " " << last_name << endl;
+	
+	return 0;
+}
+
 int Person::display_person(void) const {
 	cout << "Person:\t" << first_name << " " << last_name << endl;
 	cout << "ID:\t" << ID << endl;
@@ -85,6 +93,13 @@ int Person::display_person_formatted() const {
     cout << "\t\tState         : " << state  << endl;
     cout << "\t\tZipcode       : " << zip_code  << endl;
 	cout << "\t\tStatus	      : " << status << endl;
+	return 0;
+}
+
+int Person::create_person_string(char * buffer)
+{
+
+	sprintf(buffer, "%ld|%s %s|%s|%s|%s|%d", ID, first_name.c_str(), last_name.c_str(), street_add.c_str(), city.c_str(), state.c_str(), zip_code);
 	return 0;
 }
 

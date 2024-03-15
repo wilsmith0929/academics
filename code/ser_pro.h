@@ -1,11 +1,13 @@
 #include "person.h"
 #include "service.h"
 
-class ServicePro
+#define BUF_SIZE 500
+
+class ServiceProvided
 {
         public:
-                ServicePro();
-                ServicePro(const Person & i_member, const Person & i_provider, const Service & i_service, const string & i_date, const time_t & rawtime);
+                ServiceProvided();
+                ServiceProvided(const Person & i_member, const Person & i_provider, const Service & i_service, const string & i_date, const time_t & rawtime);
 
                 int input_provider(const Person & i_provider);
                 int input_member(const Person & i_member);
@@ -14,7 +16,8 @@ class ServicePro
                 int input_received_date(const time_t & rawtime);
 
                 int display(void);
-
+		int record_a_service(void);
+		
         private:
                 Person member;
                 Person provider;

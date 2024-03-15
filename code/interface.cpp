@@ -21,6 +21,8 @@ void begin() {
 
 
 void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, PersonVec & managerList) {
+    map<string, vector<vector<string>>> providerRecords;
+    map<string, vector<vector<string>>> memberRecords;
     int userOption = 0;
     long password  = 0;
     int check      = 0;
@@ -454,12 +456,16 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                         //---------------------------------------MANAGER MENU OPTION 3 - Generate Provider Report------------------------------------
                         case 3:
-                            generateProviderReport("../text-documents/services_provided.txt");
+                            generateProviderReport(providerRecords, "../text-documents/services_provided.txt");
+                            // Add switch cases here.
+                            printProviderReport(providerRecords);
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 4 - Generate Member Report--------------------------------------
                         case 4:
-                            generateMemberReport("../text-documents/services_provided.txt");
+                            generateMemberReport(memberRecords, "../text-documents/services_provided.txt");
+                            // Add switch cases here.
+                            printMemberReport(memberRecords);
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 5 - Exit Manager Menu ------------------------------------------

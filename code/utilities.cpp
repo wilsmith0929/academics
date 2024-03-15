@@ -87,7 +87,6 @@ void printServices(const string & filename) {
 string removeWhitespace(const string & str) {
     string newStr = str;
     newStr.erase(remove(newStr.begin(), newStr.end(), ' '), newStr.end());
-    cout << newStr << endl;
     return newStr;
 }
 
@@ -109,13 +108,12 @@ int checkIfFileEmptyAndOpenable(const string & filename) {
 }
 
 
-int generateProviderReport(const string & filename)
+int generateProviderReport(map<string, vector<vector<string>>> & providerRecords, const string & filename)
 {
     int result = checkIfFileEmptyAndOpenable(filename);
     if (result != 2) return result;
     ifstream inputFile(filename);
     string line, filename_to_write;
-    map<string, vector<vector<string>>> providerRecords;
 
     //Ignoring the first line specifying each part
     getline(inputFile, line);
@@ -161,16 +159,41 @@ int generateProviderReport(const string & filename)
             result = checkIfFileEmptyAndOpenable(filename_to_write);
             outputFile.close();
         }
+        printProviderReport(providerRecords);
     return result;
 }
 
-int generateMemberReport(const string & filename)
+void printProviderReport(const map<string, vector<vector<string>>> & providerRecords)
+{
+    for (const auto &[providerName, records]: providerRecords) {
+        cout << "First Name     : " << providerName << endl;
+        cout << "Street Address : " << records.front()[7] << endl;
+        cout << "City           : " << records.front()[8] << endl;
+        cout << "State          : " << records.front()[9] << endl;
+        cout << "Zip Code       : " << records.front()[10] << endl;
+        cout << endl;
+        cout << "Service Date   Record Date          Member Name            Member#        Service Code     Service Fee" << endl;
+
+        //Write service records
+        double totalFee = 0;
+        for (const auto& record : records) {
+        cout << record[1] << "   " << record[4] << "   "
+                    << record[12] << "   " << record[11] << "   "
+                    << record[0] << "\t" << record[3] << endl;
+        totalFee += stod(record[3]);
+        }
+        cout << endl;
+        cout << "Total number of consultations : " << records.size() << endl;
+        cout << "Total fee for the week        : " << totalFee << endl;
+    }
+}
+
+int generateMemberReport(    map<string, vector<vector<string>>> & memberRecords, const string & filename)
 {
     int result = checkIfFileEmptyAndOpenable(filename);
     if (result != 2) return result;
     ifstream inputFile(filename);
     string line, filename_to_write;
-    map<string, vector<vector<string>>> memberRecords;
 
     //Ignoring the first line specifying each part
     getline(inputFile, line);
@@ -213,5 +236,26 @@ int generateMemberReport(const string & filename)
           outputFile.close();
     }
     return result;
+}
+
+void printMemberReport(const map<string, vector<vector<string>>> & memberRecords)
+{
+    for (const auto &[memberName, records]: memberRecords) {
+        cout << "Member Name    : " << memberName << endl;
+        cout << "Member Number  : " << records.front()[11] << endl;
+        cout << "Street Address : " << records.front()[12] << endl;
+        cout << "City           : " << records.front()[13] << endl;
+        cout << "State          : " << records.front()[14] << endl;
+        cout << "Zip Code       : " << records.front()[15] << endl;
+        cout << endl;
+        cout << "Service Date   Provider Name          Service Name        Service Code" << endl;
+
+        //Write service records
+        for (const auto& record : records) {
+          cout << record[1] << "   " << record[6] << "   "
+                     << record[2] << "   " << record[0] << endl;
+        }
+        cout << endl;
+    }
 }
 

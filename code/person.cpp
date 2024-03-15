@@ -205,8 +205,8 @@ int Person::change_status(const string & i_status)
 	bool result = i_status.empty();
 	if (result == false)
 	{
-		if (status.compare(S_STAT) == 0) return 2;
-		else if (i_status.compare(S_STAT) == 0) return 3;
+		//if (status.compare(S_STAT) == 0) return 2;
+		//else if (i_status.compare(S_STAT) == 0) return 3;
 		status = i_status;
 	}
 	return 1;

@@ -22,6 +22,7 @@ double get_double();
 int    read_int();
 long   read_long();
 char   read_char();
+bool   isNumeric(const string & str);
 string read_string();
 string removeWhitespace(const string & str);
 string getCurrentDateMMDDYYYY();

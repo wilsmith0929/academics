@@ -43,6 +43,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
     map<string, vector<vector<string>>> providerRecords;
     map<string, vector<vector<string>>> memberRecords;
     int reportResult = 0;
+    long memberNumber = 0;
+    int check2 = 0;
+    bool isNumber = false;
 
     switch(option) {
 
@@ -148,6 +151,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                     //---------------------------MANAGE MEMBERS MENU OPTION 2 - Update/Deactivate----------------------
                                     case 2:
                                         memberList.display_people();
+                                        cout << "\n\n\tRemove the display after done - for testing" << endl << endl;
                                         cout << "\n\t\tSEARCH MEMBER" << endl;
                                         cout << "\t\t=> Enter Member Number : ";
                                         id = read_long();
@@ -161,7 +165,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                                         for(i = 0; i < 7 && input != "EXIT"; i++) {
                                             cout << "\n\t\tMEMBER DETAILS" << endl;
-                                            cout << "\n\t\tHit enter to leave as is or update with text" << endl << endl;
+                                            cout << "\n\t\tHIT ENTER TO LEAVE AS IS OR UPDATE WITH TEXT" << endl << endl;
                                             tempMember.display_person_formatted();
 
                                             if(i == 0) {
@@ -217,7 +221,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                                         cout << "\n\t\tMEMBER DETAILS" << endl;
                                         tempMember.display_person_formatted();
-                                        cout << "\t\t=> Save New Member Y/N : ";
+                                        cout << "\t\t=> Save Changes Y/N : ";
                                         cin  >> save;
 
                                         if(tolower(save == 'y')) {
@@ -339,6 +343,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                     //----------------------------------MANAGE PROVIDERS MENU 2 - UPDATE/DEACTIVATE PROVIDER-------------------
                                     case 2:
                                         providerList.display_people();
+                                        cout << "\n\n\tRemove the display after done - for testing" << endl << endl;
                                         cout << "\n\t\tSEARCH PROVIDER" << endl;
                                         cout << "\t\t=> Enter Provider Number : ";
                                         id = read_long();
@@ -352,7 +357,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                                         for(i = 0; i < 7 && input != "EXIT"; i++) {
                                             cout << "\n\t\tPROVIDER DETAILS" << endl;
-                                            cout << "\n\t\tHit enter to leave as is or update with text" << endl << endl;
+                                            cout << "\n\t\tHIT ENTER TO LEAVE AS IS OR UPDATE WITH TEXT" << endl << endl;
                                             tempProvider.display_person_formatted();
 
                                             if(i == 0) {
@@ -393,7 +398,8 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                                 zip = stoi(input);
                                             }
                                             else if(i == 6) {
-                                                cout << "\t\t=> Change Status : ";
+                                                cout << "\t\tDelete after - but you its case sens" << endl;
+                                                cout << "\t\t=> Change Status (Active, Inactive, Suspend): ";
                                                 input = read_string();
                                                 if (input.empty()) continue;
                                                 status = input;
@@ -408,7 +414,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                                         cout << "\n\t\tPROVIDER DETAILS" << endl;
                                         tempProvider.display_person_formatted();
-                                        cout << "\t\t=> Save New Member Y/N : ";
+                                        cout << "\t\t=> Save CHANGES Y/N : ";
                                         cin  >> save;
 
                                         if(tolower(save == 'y')) {
@@ -466,11 +472,22 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                             else {
                                 cout << "\n\t-- Provider Reports Emailed Unsucessfully --" << endl;
                             }
+                            reportResult = 0;
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 4 - Generate Member Report--------------------------------------
                         case 4:
-                            //generateMemberReport("../text-documents/services_provided.txt");
+                            cout << "\n\tGenerate Member Report" << endl << endl;
+                            reportResult = generateMemberReport(memberRecords, "../text-documents/services_provided.txt");
+                            if(reportResult == 2) {
+                                cout << "\n\t-- Member Reports Emailed Sucessfully --" << endl;
+                                cout << "\n\tAll members emailed: " << endl << endl;
+                                printMemberReport(memberRecords);
+                            }
+                            else {
+                                cout << "\n\t-- Member Reports Emailed Unsucessfully --" << endl;
+                            }
+                            reportResult = 0;
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 5 - Exit Manager Menu ------------------------------------------
@@ -515,7 +532,64 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                         //---------------------------------------PROVIDER MENU OPTION 1 - Validate Members------------------------------------------
                         case 1:
-                            cout << "\tprovider menu action 1 - Validate Member" << endl;
+                            do {
+                                cout << "\n\tVALIDATE MEMBERS (TYPE EXIT TO QUIT)" << endl;
+                                
+                                memberNumber = 0;
+                                cout << "\t=> Enter Member Number : ";
+                                input = read_string();
+
+                                //need to check if the string is number or not
+                                //if so, need to break out or else it'll try to convert
+                                //random string to long
+                                isNumber = isNumeric(input); 
+                                if(input == "EXIT" || !isNumber) {
+                                    input = "";
+                                    memberNumber = 0;
+                                    check2 = 0;
+                                    isNumber = false;
+                                    break;
+                                }
+
+                                //memberNumber = read_long();
+                                memberNumber = stol(input);
+                                check2 = memberList.verify_person(memberNumber);
+
+                                while(check2 == 1) {
+                                    cout << "\tMember " << memberNumber << " is not found. Check the number and try again" << endl;
+                                    cout << "\t=> Enter Member Number : ";
+                                    input = read_string();
+                                    isNumber = isNumeric(input); 
+                                    if(input == "EXIT" || !isNumber) {
+                                        input = "";
+                                        memberNumber = 0;
+                                        //check2 = 0;
+                                        isNumber = false;
+                                        break;
+                                    }
+                                    //memberNumber = read_long();
+                                    memberNumber = stol(input);
+                                    check2 = memberList.verify_person(memberNumber);
+                                }
+                                if(check2 == 0) {
+                                    cout << "\n\tMember " << memberNumber << " is VALID" << endl; 
+                                }
+                                else if(check2 == 2) {
+                                    cout << "\n\tMember " << memberNumber << " is SUSPENDED" << endl; 
+                                }
+                                else if(check2 == 3) {
+                                    cout << "\n\tMember " << memberNumber << " is INACTIVE" << endl; 
+                                }
+                                else {
+                                    cout << "\n\tERROR" << endl; 
+                                }
+                                memberNumber = 0;
+                                input = "";
+                                isNumber = false;
+                                check2 = 0;
+
+                            } while(input != "EXIT");
+
                             break;
 
                         //---------------------------------------PROVIDER MENU OPTION 2 - Enter service deatils-------------------------------------
@@ -530,9 +604,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                         //---------------------------------------PROVIDER MENU OPTION 4 - View Service Directory-------------------------------------
                         case 4:
-                            cout << "\n\tPROVIDER SERVICES OFFERED DIRECTORY" << endl;
-                            cout << "\n\tService Code | Service Name           | Service Fee" << endl;
-                            cout << "\t-----------------------------------------------------" << endl;
+                            cout << "\n\tSERVICES DIRECTORY" << endl << endl;
                             printServices("../text-documents/services.txt");
                             break;
 
@@ -572,8 +644,8 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 //    cout << "\n\t**** Manager Menu ****"    << endl;                //DONE
 //    cout << "\t1- Manage Members"           << endl;                //DONE
 //    cout << "\t2- Manage Providers"         << endl;                //DONE
-//    cout << "\t3- Generate Provider Report" << endl;                //DONE //STILL NEEDS FORMATTING
-//    cout << "\t4- Generate Member Report"   << endl;                //DONE //STILL NEEDS FORMATTING
+//    cout << "\t3- Generate Provider Report" << endl;                //DONE
+//    cout << "\t4- Generate Member Report"   << endl;                //DONE 
 //    cout << "\t5- Return to Main Menu"      << endl;                //DONE
 
 //    cout << "\n\t**** Provider Menu ****" << endl;                  //DONE

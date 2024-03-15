@@ -1,0 +1,20 @@
+Provider Name        | Provider Number                | Payment
+      Provider      |     100002                  |     100
+      Provider      |     100003                  |      97
+      Provider      |     100004                  |     145
+      Provider      |     100005                  |      95
+      Provider      |     100006                  |     100
+      Provider      |     100007                  |     110
+      Provider      |     100008                  |      90
+      Provider      |     100009                  |     145
+      Provider      |     100010                  |     175
+      Provider      |     100011                  |     195
+      Provider      |     100012                  |     145
+      Provider      |     100013                  |     200
+      Provider      |     100014                  |     225
+      Provider      |     100015                  |     124
+      Provider      |     100016                  |     125
+      Provider      |     100017                  |     135
+      Provider      |     654322                  |     125
+
+Total Fees: 2331

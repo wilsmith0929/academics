@@ -460,7 +460,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                             reportResult = generateProviderReport(providerRecords, "../text-documents/services_provided.txt");
                             if(reportResult == 2) {
                                 cout << "\n\t-- Provider Reports Emailed Sucessfully --" << endl;
-                                cout << "\n\tAll providers emailed:" << endl;
+                                cout << "\n\tAll providers emailed:" << endl << endl;
                                 printProviderReport(providerRecords);
                             }
                             else {

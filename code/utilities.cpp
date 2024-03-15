@@ -142,6 +142,31 @@ int generateProviderReport(map<string, vector<vector<string>>> & providerRecords
             outputFile << "City           : " << records.front()[8] << endl;
             outputFile << "State          : " << records.front()[9] << endl;
             outputFile << "Zip Code       : " << records.front()[10] << endl;
+
+            outputFile << endl;
+            outputFile << left << setw(20) << "Service Date";
+            outputFile << setw(23) << "Record Date";
+            outputFile << setw(20) << "Member Name";
+            outputFile << setw(15) << "Member #";
+            outputFile << setw(15) << "Service Code";
+            outputFile << setw(15) << "Service Fee" << endl;
+
+            //Write service records
+            double totalFee = 0;
+            for (const auto& record : records) {
+              totalFee += stod(record[3]);
+              outputFile << left << setw(20) << record[1];
+              outputFile << setw(23) << record[4];
+              outputFile << setw(20) << record[12];
+              outputFile << setw(15) << record[11];
+              outputFile << setw(15) << record[0];
+              outputFile << setw(15) << record[3] << endl;
+            }
+            outputFile << endl;
+            outputFile << "Total number of consultations : " << records.size() << endl;
+            outputFile << "Total fee for the week        : " << totalFee       << endl;
+
+/*//
             outputFile << endl;
             outputFile << "Service Date   Record Date          Member Name            Member#        Service Code     Service Fee" << endl;
 
@@ -156,6 +181,7 @@ int generateProviderReport(map<string, vector<vector<string>>> & providerRecords
             outputFile << endl;
             outputFile << "Total number of consultations : " << records.size() << endl;
             outputFile << "Total fee for the week        : " << totalFee << endl;
+//*/
             result = checkIfFileEmptyAndOpenable(filename_to_write);
             outputFile.close();
         }
@@ -165,26 +191,34 @@ int generateProviderReport(map<string, vector<vector<string>>> & providerRecords
 
 void printProviderReport(const map<string, vector<vector<string>>> & providerRecords)
 {
-    for (const auto &[providerName, records]: providerRecords) {
-        cout << "First Name     : " << providerName << endl;
-        cout << "Street Address : " << records.front()[7] << endl;
-        cout << "City           : " << records.front()[8] << endl;
-        cout << "State          : " << records.front()[9] << endl;
-        cout << "Zip Code       : " << records.front()[10] << endl;
+  for (const auto &[providerName, records] : providerRecords) {
+        cout << "\tName           : " << providerName << endl;
+        cout << "\tStreet Address : " << records.front()[7] << endl;
+        cout << "\tCity           : " << records.front()[8] << endl;
+        cout << "\tState          : " << records.front()[9] << endl;
+        cout << "\tZip Code       : " << records.front()[10] << endl;
         cout << endl;
-        cout << "Service Date   Record Date          Member Name            Member#        Service Code     Service Fee" << endl;
+        cout << "\t" << left << setw(20) << "Service Date";
+        cout << setw(23) << "Record Date";
+        cout << setw(20) << "Member Name";
+        cout << setw(15) << "Member #";
+        cout << setw(15) << "Service Code";
+        cout << setw(15) << "Service Fee" << endl;
 
         //Write service records
         double totalFee = 0;
         for (const auto& record : records) {
-        cout << record[1] << "   " << record[4] << "   "
-                    << record[12] << "   " << record[11] << "   "
-                    << record[0] << "\t" << record[3] << endl;
-        totalFee += stod(record[3]);
+          totalFee += stod(record[3]);
+          cout << "\t" << left << setw(20) << record[1];
+          cout << setw(23) << record[4];
+          cout << setw(20) << record[12];
+          cout << setw(15) << record[11];
+          cout << setw(15) << record[0];
+          cout << setw(15) << record[3] << endl;
         }
         cout << endl;
-        cout << "Total number of consultations : " << records.size() << endl;
-        cout << "Total fee for the week        : " << totalFee << endl;
+        cout << "\tTotal number of consultations : " << records.size() << endl;
+        cout << "\tTotal fee for the week        : " << totalFee       << endl;
     }
 }
 

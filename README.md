@@ -1,5 +1,5 @@
 ----------------------------- Project Information -----------------------------
-|                                                                             |
+
 -------------------------------- Unit Testing ---------------------------------
 The following set of instructions must be done in
 (.../cs-314-group-7-project/build/):
@@ -13,7 +13,7 @@ The following set of instructions must be done in
 (.../cs-314-group-7-project/build/):
     - "cmake --build ."
 -------------------------------------------------------------------------------
-|                                                                             |
+
 ----------------------------- Running the Program -----------------------------
 The following set of instructions must be done in (.../cs-314-group-7-project/code/):
 - To compile, run the command inside the quoations: "make main"
@@ -23,7 +23,7 @@ The following set of instructions must be done in (.../cs-314-group-7-project/co
         - make: *** No rule to make target `example'.  Stop."
 - To run the program: ./main
 -------------------------------------------------------------------------------
-|                                                                             |
+
 ----------------------------- Cloning the Repository --------------------------
 - Cloning (via SSH):
     - git clone git@gitlab.cecs.pdx.edu:wilsmith/cs-314-group-7-project.git

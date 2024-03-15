@@ -188,7 +188,7 @@ void printProviderReport(const map<string, vector<vector<string>>> & providerRec
     }
 }
 
-int generateMemberReport(    map<string, vector<vector<string>>> & memberRecords, const string & filename)
+int generateMemberReport(map<string, vector<vector<string>>> & memberRecords, const string & filename)
 {
     int result = checkIfFileEmptyAndOpenable(filename);
     if (result != 2) return result;

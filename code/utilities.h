@@ -31,3 +31,4 @@ int generateProviderReport(map<string, vector<vector<string>>> & providerRecords
 void printProviderReport(const map<string, vector<vector<string>>> & providerRecords);
 int generateMemberReport(map<string, vector<vector<string>>> & memberRecords, const string & filename);
 void printMemberReport(const map<string, vector<vector<string>>> & memberRecords);
+void generateWeeklyEFTReport(const string& providerReportFilename);

@@ -7,6 +7,7 @@
 #include <cctype>
 #include <fstream>
 #include <cstring>
+#include <sstream>
 #include <ctime>
 #include <cstdlib>
 #include <cstdio>
@@ -21,5 +22,10 @@ int    read_int();
 long   read_long();
 char   read_char();
 string read_string();
+string removeWhitespace(const string & str);
+string getCurrentDateMMDDYYYY();
+int checkIfFileEmpty(ifstream & inputFile);
+int hasFileBeenWrittenTo(string & filename);
 void printServices(const string & filename);
-void generateProviderReport(const string & filename);
+int generateProviderReport(const string & filename);
+int generateMemberReport(const string & filename);

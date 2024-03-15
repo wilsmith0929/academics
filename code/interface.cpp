@@ -12,7 +12,7 @@ void begin() {
     do {
         displayMainMenu();
         cout << "\n=> Option: ";
-        userOption = read_int();    
+        userOption = read_int();
         exeCmd(userOption, memberList, providerList, managerList);
     } while(userOption != 3);
 
@@ -29,9 +29,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
     int i          = 0;
     string first  = "";
     string last   = "";
-    string type   = ""; 
-    string status = ""; 
-    string street = ""; 
+    string type   = "";
+    string status = "";
+    string street = "";
     string city   = "";
     string state  = "";
     string tempZ  = "";
@@ -68,7 +68,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                     switch(userOption) {
 
-                        //--------------------------------MANAGER MENU OPTION 1 MANAGE MEMBERS------------------------------------------------------------                        
+                        //--------------------------------MANAGER MENU OPTION 1 MANAGE MEMBERS------------------------------------------------------------
                         case 1:
                             do {
                                 manageMembersMenu();
@@ -103,7 +103,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                                 cout << "\t\t=> Enter City : ";
                                                 input = read_string();
                                                 city = input;
-                                            }    
+                                            }
                                             else if(i == 4) {
                                                 cout << "\t\t=> Enter State : ";
                                                 input = read_string();
@@ -115,7 +115,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                                 tempZ = to_string(zip);
                                             }
                                         }
-                                        
+
                                         status = "Active";
                                         type = "MEMBER";
 
@@ -155,7 +155,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                             cin  >> id;
                                             check = memberList.retrieve_person(id, tempMember);
                                         }
-                                        
+
                                         for(i = 0; i < 7 && input != "EXIT"; i++) {
                                             cout << "\n\t\tMEMBER DETAILS" << endl;
                                             cout << "\n\t\tHit enter to leave as is or update with text" << endl << endl;
@@ -184,7 +184,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                                 input = read_string();
                                                 if (input.empty()) continue;
                                                 city = input;
-                                            }    
+                                            }
                                             else if(i == 4) {
                                                 cout << "\t\t=> Change State : ";
                                                 input = read_string();
@@ -248,7 +248,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         //needs to get resetted
                                         resetVariables(first, last, type, status, street, city, state, tempZ, zip, id, i, save, input);
                                         break;
-                                    
+
                                     //------------------------------------MANAGE MEMBERS MENU OPTION 3--------------------------
                                     case 3:
                                         cout << "\n\t\tReturned to Manager Menu" << endl;
@@ -294,7 +294,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                                 cout << "\t\t=> Enter City : ";
                                                 input = read_string();
                                                 city = input;
-                                            }    
+                                            }
                                             else if(i == 4) {
                                                 cout << "\t\t=> Enter State : ";
                                                 input = read_string();
@@ -332,7 +332,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                         //needs to get resetted
                                         resetVariables(first, last, type, status, street, city, state, tempZ, zip, id, i, save, input);
                                         break;
-                                    
+
                                     //----------------------------------MANAGE PROVIDERS MENU 2 - UPDATE/DEACTIVATE PROVIDER-------------------
                                     case 2:
                                         providerList.display_people();
@@ -346,7 +346,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                             id = read_long();
                                             check = providerList.retrieve_person(id, tempProvider);
                                         }
-                                        
+
                                         for(i = 0; i < 7 && input != "EXIT"; i++) {
                                             cout << "\n\t\tPROVIDER DETAILS" << endl;
                                             cout << "\n\t\tHit enter to leave as is or update with text" << endl << endl;
@@ -375,7 +375,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                                 input = read_string();
                                                 if (input.empty()) continue;
                                                 city = input;
-                                            }    
+                                            }
                                             else if(i == 4) {
                                                 cout << "\t\t=> Change State : ";
                                                 input = read_string();
@@ -454,12 +454,12 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                         //---------------------------------------MANAGER MENU OPTION 3 - Generate Provider Report------------------------------------
                         case 3:
-                            cout << "\tmanager menu action 3 - Generate Provider Report" << endl;
+                            generateProviderReport("../text-documents/services_provided.txt");
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 4 - Generate Member Report--------------------------------------
                         case 4:
-                            cout << "\tmanager menu action 4 - Generate Member Report" << endl;
+                            generateMemberReport("../text-documents/services_provided.txt");
                             break;
 
                         //---------------------------------------MANAGER MENU OPTION 5 - Exit Manager Menu ------------------------------------------
@@ -473,7 +473,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                     }                                   //switch case for MANAGER MENU
 
-                } while(userOption != 5);       //do while loop for continuous input 
+                } while(userOption != 5);       //do while loop for continuous input
 
             }                       //if to check if check is valid
             break;
@@ -545,7 +545,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
         case 3:
             cout << "\nExiting Main Menu!" << endl;
             break;
-    
+
         default:
             cout << "Invalid Option! Please try again!" << endl;
 
@@ -563,7 +563,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 //    cout << "\t2- Manage Providers"         << endl;                //DONE
 //    cout << "\t3- Generate Provider Report" << endl;                //
 //    cout << "\t4- Generate Member Report"   << endl;                //
-//    cout << "\t5- Return to Main Menu"      << endl;                //DONE 
+//    cout << "\t5- Return to Main Menu"      << endl;                //DONE
 
 //    cout << "\n\t**** Provider Menu ****" << endl;                  //DONE
 //    cout << "\t1- Validate Members"       << endl;                  //
@@ -632,13 +632,13 @@ void printDetails(string first, string last, string street, string city, string 
 
 void resetVariables(string & first, string & last, string & type, string & status,
                     string & street, string & city, string & state, string & tempZ,
-                    int & zip, long & id, int & i, char & save, string & input) 
+                    int & zip, long & id, int & i, char & save, string & input)
 {
     first  = "";
     last   = "";
-    type   = ""; 
-    status = ""; 
-    street = ""; 
+    type   = "";
+    status = "";
+    street = "";
     city   = "";
     state  = "";
     tempZ  = "";
@@ -646,7 +646,7 @@ void resetVariables(string & first, string & last, string & type, string & statu
     id  = 0;
     i   = 0;
     save = '\0';
-    input = ""; 
+    input = "";
 }
 
 void displayWelcomeMsg() {

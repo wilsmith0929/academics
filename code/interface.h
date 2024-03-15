@@ -1,5 +1,6 @@
 #pragma once
 #include "person_vec.h"
+#include "utilities.h"
 
 void begin();               //KP - act as main, we will call this in main
 void displayMainMenu();     //KP - main menu

@@ -135,7 +135,7 @@ int checkIfFileEmptyAndOpenable(const string & filename) {
   ifstream fileToTest(filename);
   if (!fileToTest.is_open()) return 0;
   fileToTest.seekg(0, ios::end);
-  if (fileToTest.tellg() == 0) return 1;
+  if (filesystem::file_size(filename) == 0) return 1;
   fileToTest.close();
   return 2;
 }

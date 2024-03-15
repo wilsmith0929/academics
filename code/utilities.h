@@ -18,6 +18,7 @@ using namespace std;
 const int MAX = 101;
 
 //just some functions that might be useful for inputting, it does data validation
+int    add(int a, int b);
 double get_double();
 int    read_int();
 long   read_long();

@@ -1,5 +1,10 @@
 #include "utilities.h"
 
+// Sample unit test function.
+int add(int a, int b) {
+  return a + b;
+}
+
 int read_int() {
   //temp integer to be inputted
   int temp = 0;

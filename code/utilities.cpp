@@ -85,70 +85,35 @@ void printServices(const string & filename) {
 }
 
 string removeWhitespace(const string & str) {
-    std::string result;
-    for (char c : str) {
-        if (!std::isspace(static_cast<unsigned char>(c))) {
-            result += c;
-        }
-    }
-    return result;
+    string newStr = str;
+    newStr.erase(remove(newStr.begin(), newStr.end(), ' '), newStr.end());
+    cout << newStr << endl;
+    return newStr;
 }
 
 string getCurrentDateMMDDYYYY() {
-    time_t t = time(nullptr);
-    tm* now = localtime(&t);
-
-    ostringstream oss;
-    oss << setfill('0') << setw(2) << now->tm_mon + 1; // Month (add 1 since January is 0)
-    oss << setfill('0') << setw(2) << now->tm_mday;     // Day
-    oss << now->tm_year + 1900;                         // Year (add 1900)
-
-    return oss.str();
+    char time_char[80];
+    time_t t = time(0);
+    strftime(time_char, 80, "%m%d%Y", localtime(&t));
+    string time_str = time_char;
+    return time_str;
 }
 
-int checkIfFileEmpty(ifstream & inputFile) {
-    // Check if the file is open
-    if (!inputFile.is_open()) {
-        cerr << "Failed to open the file." << std::endl;
-        return 1; // Error code for failed to open the file
-    }
-
-    // Check if the file is empty
-    inputFile.seekg(0, ios::end); // Move to the end of the file
-    if (inputFile.tellg() == 0) {      // Check the position
-        cerr << "File is empty." << endl;
-        return 2; // Error code for empty file
-    }
-    inputFile.seekg(0, ios::beg); // Move back to the beginning of the file
-
-    // Check if the file contains only whitespace
-    if (inputFile.peek() == ifstream::traits_type::eof()) {
-        cerr << "File contains only whitespace." << std::endl;
-        return 3; // Error code for file containing only whitespace
-    }
-
-    // If we reach this point, the file is open and not empty
-    return 0; // Success
+int checkIfFileEmptyAndOpenable(const string & filename) {
+    ifstream fileToTest(filename);
+    if (!fileToTest.is_open()) return 0;
+    fileToTest.seekg(0, ios::end);
+    if (fileToTest.tellg() == 0) return 1;
+    fileToTest.close();
+    return 2;
 }
 
-int hasFileBeenWrittenTo(string & filename) {
-    ifstream inputFile(filename, ios::binary);
-    if (!inputFile.is_open()) {
-        cerr << "Failed to open the file." << endl;
-        return 0;
-    }
-
-    inputFile.seekg(0, ios::end);
-    streampos currentFileSize = inputFile.tellg();
-    inputFile.close();
-
-    return currentFileSize > 0; // Check if file size is greater than zero
-}
 
 int generateProviderReport(const string & filename)
 {
+    int result = checkIfFileEmptyAndOpenable(filename);
+    if (result != 2) return result;
     ifstream inputFile(filename);
-    if (checkIfFileEmpty(inputFile) != 0) return 0;
     string line, filename_to_write;
     map<string, vector<vector<string>>> providerRecords;
 
@@ -193,15 +158,17 @@ int generateProviderReport(const string & filename)
             outputFile << endl;
             outputFile << "Total number of consultations : " << records.size() << endl;
             outputFile << "Total fee for the week        : " << totalFee << endl;
+            result = checkIfFileEmptyAndOpenable(filename_to_write);
             outputFile.close();
         }
-    return hasFileBeenWrittenTo(filename_to_write);
+    return result;
 }
 
 int generateMemberReport(const string & filename)
 {
+    int result = checkIfFileEmptyAndOpenable(filename);
+    if (result != 2) return result;
     ifstream inputFile(filename);
-    if (checkIfFileEmpty(inputFile) != 0) return 0;
     string line, filename_to_write;
     map<string, vector<vector<string>>> memberRecords;
 
@@ -242,8 +209,9 @@ int generateMemberReport(const string & filename)
                        << record[2] << "   " << record[0] << endl;
           }
           outputFile << endl;
+          result = checkIfFileEmptyAndOpenable(filename_to_write);
           outputFile.close();
     }
-    return hasFileBeenWrittenTo(filename_to_write);
+    return result;
 }
 

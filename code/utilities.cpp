@@ -293,3 +293,54 @@ void printMemberReport(const map<string, vector<vector<string>>> & memberRecords
     }
 }
 
+void generateWeeklyEFTReport(const string& providerReportFilename) {
+    ifstream inputFile(providerReportFilename);
+    if (!inputFile.is_open()) {
+        cerr << "Failed to open the provider report file." << endl;
+        return;
+    }
+
+    // Map to store total payments for each provider
+    map<string, double> providerPayments;
+
+    string line;
+    while (getline(inputFile, line)) {
+        istringstream iss(line);
+        string providerNumber, serviceName;
+        double serviceFee;
+        if (getline(iss, providerNumber, '|') &&
+            getline(iss, serviceName, '|') &&
+            (iss >> serviceFee)) {
+            providerPayments[providerNumber] += serviceFee;
+        }
+    }
+
+    inputFile.close();
+
+    // Open the output file for writing the EFT report
+    ofstream outputFile("../text-documents/weekly_EFT.txt");
+    if (!outputFile.is_open()) {
+        cerr << "Failed to create the output file." << endl;
+        return;
+    }
+
+    // Write the EFT report header
+    outputFile << "Provider Name" << setw(25) << "| Provider Number" << setw(25) << "| Payment" << endl;
+
+    // Write the EFT report data
+    double totalFees = 0.0;
+    for (const auto& [providerNumber, payment] : providerPayments) {
+        outputFile << setw(15) << "Provider " << setw(7) << "| " << setw(10) << providerNumber << setw(20) << "| "<< setw(7) << payment << endl;
+        totalFees += payment;
+    }
+
+    // Write total fees at the bottom
+    outputFile << endl << "Total Fees: " << totalFees << endl;
+
+    // Close the output file
+    outputFile.close();
+
+    cout << "Weekly EFT report has been generated successfully." << endl;
+}
+
+

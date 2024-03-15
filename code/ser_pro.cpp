@@ -62,6 +62,10 @@ int ServiceProvided::display(void)
 
 int ServiceProvided::record_a_service(void)
 {
+	ofstream outf;
+	fstream f;
+	string hold;
+
 	char buffer[BUF_SIZE] = {'\0'};
 	char service_info[80] = {'\0'};
 	char provider_info[100] = {'\0'};
@@ -76,7 +80,16 @@ int ServiceProvided::record_a_service(void)
 
 	sprintf(buffer, "%d|%s|%s|%s|%s|%s\n", ser_id, provider_date.c_str(), service_info, received_date, provider_info, member_info);
 
-	cout << buffer << endl;
+	outf.open(FILENAME, ios::app);
+	if (!outf)
+	{
+		fprintf(stderr, "The file \"%s\" was not found", FILENAME);
+	}
+	else
+	{
+		outf << buffer;
+		outf.close();
+	}
 
 	return 0;
 }

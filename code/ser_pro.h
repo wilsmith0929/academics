@@ -1,7 +1,8 @@
 #include "person.h"
 #include "service.h"
 
-#define BUF_SIZE 500
+#define BUF_SIZE 450
+#define FILENAME "provided_services.txt" 
 
 class ServiceProvided
 {

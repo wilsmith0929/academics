@@ -9,7 +9,7 @@ class Service {
 		int compare_ID(const int & id);
 		int display_service(void) const;
 		int display(void) const;
-		
+
 		int get_service_code(int & to_receive);
 		int create_service_string(char * buffer);
 		

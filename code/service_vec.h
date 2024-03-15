@@ -10,6 +10,8 @@ class SerVec {
 		int verify_service(const int to_find);
 
 		int display_found_service(void) const;
+		int retrieve_service(const int to_find, Service & to_fill);
+
 	private:
 		vector<Service> ser_vec;
 		Service * hold;

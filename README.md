@@ -9,7 +9,7 @@ The following set of instructions must be done in
 - To start, run the two commands inside the quotations in the following order:
     - "cmake .."
     - "cmake --build ."
-- To run the tests, run these commands in the following order:
+- To run the tests, run these commands inside the quotations in the following order:
     - "cd tests" (Which puts you in .../cs-314-group-7-project/build/tests/)
     - "./ChocAnTests"
     - Optionally, run "./tests/ChocAnTests" in .../cs-314-group-7-project/build/.

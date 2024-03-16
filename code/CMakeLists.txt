@@ -1,5 +1,5 @@
 # Add source files in code
-add_library(MyProjectLib
+add_library(ChocAnLib
     interface.cpp
     main.cpp
     person.cpp

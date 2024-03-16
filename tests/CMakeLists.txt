@@ -1,5 +1,5 @@
 # Add test executable
-add_executable(MyProjectTests
+add_executable(ChocAnTests
     person_test.cpp
     person_vec_test.cpp
     ser_pro_test.cpp
@@ -10,8 +10,8 @@ add_executable(MyProjectTests
 )
 
 # Link with Google Test and your project library
-target_link_libraries(MyProjectTests gtest gtest_main MyProjectLib)
+target_link_libraries(ChocAnTests gtest gtest_main ChocAnLib)
 
 # Optionally, if you want to run tests automatically after building
 include(GoogleTest)
-gtest_discover_tests(MyProjectTests)
+gtest_discover_tests(ChocAnTests)

@@ -4,7 +4,6 @@ add_executable(MyProjectTests
     person_test.cpp
     person_vec_test.cpp
     ser_pro_test.cpp
-    ser_pro_vec_test.cpp
     service_test.cpp
     service_vec_test.cpp
     utilities_test.cpp

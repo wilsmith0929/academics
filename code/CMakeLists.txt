@@ -5,7 +5,6 @@ add_library(MyProjectLib
     person.cpp
     person_vec.cpp
     ser_pro.cpp
-    ser_pro_vec.cpp
     service.cpp
     service_vec.cpp
     utilities.cpp

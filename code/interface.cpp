@@ -1,9 +1,18 @@
 #include "interface.h"
+#include "service_vec.h"
 
 void begin() {
     PersonVec memberList;
     PersonVec providerList;
     PersonVec managerList;
+
+    SerVec serviceList;
+    string fileName = "../text-documents/services.txt";
+    serviceList.upload_services(fileName);
+
+    //serviceList.display_services();
+
+
 
     upload_people(memberList, providerList, managerList);
     int userOption = 0;
@@ -13,14 +22,15 @@ void begin() {
         displayMainMenu();
         cout << "\n=> Option: ";
         userOption = read_int();
-        exeCmd(userOption, memberList, providerList, managerList);
+        exeCmd(userOption, memberList, providerList, managerList, serviceList);
     } while(userOption != 3);
 
     displayExitMsg();
 }
 
 
-void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, PersonVec & managerList) {
+void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, PersonVec & managerList, SerVec & serviceList) {
+
     int userOption = 0;
     long password  = 0;
     int check      = 0;
@@ -40,6 +50,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
     string input = "";
     Person tempMember;
     Person tempProvider;
+    Service tempService;
     map<string, vector<vector<string>>> providerRecords;
     map<string, vector<vector<string>>> memberRecords;
     int reportResult = 0;
@@ -47,11 +58,25 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
     int check2 = 0;
     bool isNumber = false;
 
+    string tempMemberNumber = "";
+    string tempName = "";
+    int serviceCode = 0;
+    string tempS = "";
+    string serviceName = "";
+    float serviceFee = 0;
+    string tempF = "";
+    string serviceDate = "";
+    //string comments = "";
+
+    time_t raw_time;
+    ServiceProvided tempServiceProvided;
+
+    int count = 0;
+
     switch(option) {
 
         //-------------------------------------------MAIN MENU OPTION 1 - MANAGER STUFF -------------------------------------------------------------------------------------------------------------
         case 1:
-
             password = 0;
             cout << "\n\tMANAGER LOGIN" << endl;
             cout << "\t=> Enter Manager ID Number : ";
@@ -522,6 +547,8 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                 check = providerList.verify_person(password);
             }
 
+            providerList.retrieve_person(password, tempProvider);
+
             if(check == 0) {
                 do {
                     providerMenu();
@@ -571,6 +598,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
                                     memberNumber = stol(input);
                                     check2 = memberList.verify_person(memberNumber);
                                 }
+
+                                memberList.retrieve_person(memberNumber, tempMember);
+
                                 if(check2 == 0) {
                                     cout << "\n\tMember " << memberNumber << " is VALID" << endl; 
                                 }
@@ -594,22 +624,163 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                         //---------------------------------------PROVIDER MENU OPTION 2 - Enter service deatils-------------------------------------
                         case 2:
-                            cout << "\tprovider menu action 2 - Enter service details" << endl;
-                            break;
+                            for(i = 0; i < 3 && input != "EXIT"; i++) {
+                                //cout << "\n\tENTER SERVICE DETAILS" << endl;
+                                //printDetails2(tempMemberNumber, tempName, tempS, serviceName, tempF, serviceDate);
+                                cout << "\tENTER SERVICE DETAILS" << endl;
+                                if(count >= 1) {
+                                    tempMember.display_member_provided_service();
+                                }
+                                else {
+                                    cout << "\tMember Number : " << tempMemberNumber  << endl;
+                                    cout << "\tMember Name   : " << tempName    << endl;
+                                }
+                                if(count >= 2) {
+                                    tempService.display_service();
+                                }
+                                else {
+                                    cout << "\tService Code  : " << tempS       << endl;
+                                    cout << "\tService Name  : " << serviceName << endl;
+                                    cout << "\tService Fee   : " << fixed << setprecision(2) << tempF << endl;
+                                }
 
-                        //---------------------------------------PROVIDER MENU OPTION 3 - View Service History---------------------------------------
-                        case 3:
-                            cout << "\tprovider menu action 3 - View Service History" << endl;
+                                cout << "\tService Date  : " << serviceDate << endl;
+
+                                if(i == 0) {
+                                    //cout << "\t=> Enter Member Number : ";
+
+                                    memberNumber = 0;
+                                    cout << "\t=> Enter Member Number : ";
+                                    input = read_string();
+
+                                    //need to check if the string is number or not
+                                    //if so, need to break out or else it'll try to convert
+                                    //random string to long
+                                    isNumber = isNumeric(input); 
+                                    if(input == "EXIT" || !isNumber) {
+                                        input = "";
+                                        memberNumber = 0;
+                                        check2 = 0;
+                                        isNumber = false;
+                                        break;
+                                    }
+
+                                    memberNumber = stol(input);
+                                    check2 = memberList.verify_person(memberNumber);
+
+                                    while(check2 != 0) {
+                                        cout << "\n\tMEMBER INVALID - KEEP TRYING OR TYPE EXIT" << endl;
+                                        cout << "\n\tENTER SERVICE DETAILS" << endl;
+                                        printDetails2(tempMemberNumber, tempName, tempS, serviceName, tempF, serviceDate);
+                                        //cout << "\t=> Enter Member Number : ";
+
+                                        memberNumber = 0;
+                                        cout << "\t=> Enter Member Number : ";
+                                        input = read_string();
+
+                                        //need to check if the string is number or not
+                                        //if so, need to break out or else it'll try to convert
+                                        //random string to long
+                                        isNumber = isNumeric(input); 
+                                        if(input == "EXIT" || !isNumber) {
+                                            input = "";
+                                            memberNumber = 0;
+                                            check2 = 0;
+                                            isNumber = false;
+                                            break;
+                                        }
+
+                                        memberNumber = stol(input);
+                                        check2 = memberList.verify_person(memberNumber);
+                                    }
+
+                                    count++;
+                                    memberList.retrieve_person(memberNumber, tempMember);
+                                    tempMember.display_member_provided_service();
+                                    tempMemberNumber = to_string(memberNumber);
+                                }
+                                else if(i == 1) {
+                                    cout << "\t=> Enter Service Code : ";
+                                    serviceCode = read_int();
+                                    check = serviceList.verify_service(serviceCode);
+
+                                    while(check != 0) {
+                                        cout << "\tENTER SERVICE DETAILS" << endl;
+                                        tempMember.display_member_provided_service();
+                                        cout << "\tService Code  : " << tempS       << endl;
+                                        cout << "\tService Name  : " << serviceName << endl;
+                                        cout << "\tService Fee   : " << fixed << setprecision(2) << tempF << endl;
+                                        cout << "\tService Date  : " << serviceDate << endl;
+
+                                        cout << "\t=> Enter Service Code : ";
+                                        serviceCode = read_int();
+                                        check = serviceList.verify_service(serviceCode);
+                                    }
+
+                                    serviceList.retrieve_service(serviceCode, tempService);
+                                    count++;
+                                }
+                                else if(i == 2) {
+                                    cout << "\t=> Enter Service Date (MM-DD-YYYY) : ";
+                                    input = read_string();
+                                    serviceDate = input;
+                                    time(&raw_time);
+                                }
+                            }
+
+                            if(input == "EXIT") {
+                                resetVariables2(tempMemberNumber, tempName, tempS, serviceName, tempF, serviceDate, serviceFee, serviceCode, input, save); 
+                                cout << "\n\tReturned to Provider Menu" << endl;
+                                break;
+                            }
+
+                            cout << "\n\tSERVICE DETAILS" << endl;
+                            cout << "\tENTER SERVICE DETAILS" << endl;
+                            if(count >= 1) {
+                                tempMember.display_member_provided_service();
+                            }
+                            else {
+                                cout << "\tMember Number : " << tempMemberNumber  << endl;
+                                cout << "\tMember Name   : " << tempName    << endl;
+                            }
+                            if(count >= 2) {
+                                tempService.display_service();
+                            }
+                            else {
+                                cout << "\tService Code  : " << tempS       << endl;
+                                cout << "\tService Name  : " << serviceName << endl;
+                                cout << "\tService Fee   : " << fixed << setprecision(2) << tempF << endl;
+                            }
+
+                            cout << "\tService Date  : " << serviceDate << endl;
+                            cout << "\t=> Save New Service Y/N : ";
+                            cin  >> save;
+
+                            if(tolower(save == 'y')) {
+                                tempServiceProvided.input_provider(tempProvider);
+                                tempServiceProvided.input_member(tempMember);
+                                tempServiceProvided.input_service(tempService);
+                                tempServiceProvided.input_provider_date(serviceDate);
+                                tempServiceProvided.input_received_date(raw_time);
+                                tempServiceProvided.record_a_service();
+
+                                tempServiceProvided.display();
+
+                                count = 0;
+                            }
+
+                            //needs to get resetted
+                            resetVariables2(tempMemberNumber, tempName, tempS, serviceName, tempF, serviceDate, serviceFee, serviceCode, input, save); 
                             break;
 
                         //---------------------------------------PROVIDER MENU OPTION 4 - View Service Directory-------------------------------------
-                        case 4:
+                        case 3:
                             cout << "\n\tSERVICES DIRECTORY" << endl << endl;
                             printServices("../text-documents/services.txt");
                             break;
 
                         //---------------------------------------PROVIDER MENU OPTION 5 - Exit provider menu ----------------------------------------
-                        case 5:
+                        case 4:
                             cout << "\n\tExiting Provider Menu, back to main menu" << endl;
                             break;
 
@@ -619,7 +790,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 
                     }                           //switch case for PROVIDER MENU
 
-                } while(userOption != 5);  //do while loop for continuous input
+                } while(userOption != 4);  //do while loop for continuous input
 
             }                       //if to check if check is valid
             break;
@@ -649,7 +820,7 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 //    cout << "\t5- Return to Main Menu"      << endl;                //DONE
 
 //    cout << "\n\t**** Provider Menu ****" << endl;                  //DONE
-//    cout << "\t1- Validate Members"       << endl;                  //
+//    cout << "\t1- Validate Members"       << endl;                  //DONE
 //    cout << "\t2- Enter Service Details"  << endl;                  //
 //    cout << "\t3- View Service History"   << endl;                  //
 //    cout << "\t4- View Service Directory" << endl;                  //DONE
@@ -665,6 +836,9 @@ void exeCmd(int option, PersonVec & memberList, PersonVec & providerList, Person
 //    cout << "\t\t2- Update/Inactivate Provider Record" << endl;     //DONE
 //    cout << "\t\t3- Return to Manager Menu"            << endl;     //DONE
 
+
+
+
 void displayMainMenu() {
     cout << "\n**** Main Menu ****" << endl;
     cout << "1- Manager Login"      << endl;
@@ -676,9 +850,8 @@ void providerMenu() {
     cout << "\n\t**** Provider Menu ****" << endl;
     cout << "\t1- Validate Members"       << endl;
     cout << "\t2- Enter Service Details"  << endl;
-    cout << "\t3- View Service History"   << endl;
-    cout << "\t4- View Service Directory" << endl;
-    cout << "\t5- Return to Main Menu"    << endl;
+    cout << "\t3- View Service Directory" << endl;
+    cout << "\t4- Return to Main Menu"    << endl;
 }
 
 void managerMenu() {
@@ -713,6 +886,16 @@ void printDetails(string first, string last, string street, string city, string 
     cout << "\t\tZipcode       : " << tempZ  << endl;
 }
 
+void printDetails2(string tempMemberNumber, string tempName, string tempS, string serviceName, string tempF, string serviceDate) {
+    cout << "\tMember Number : " << tempMemberNumber  << endl;
+    cout << "\tMember Name   : " << tempName    << endl;
+    cout << "\tService Code  : " << tempS       << endl;
+    cout << "\tService Name  : " << serviceName << endl;
+    cout << "\tService Fee   : " << fixed << setprecision(2) << tempF << endl;
+    cout << "\tService Date  : " << serviceDate << endl;
+   // cout << "\tComments      : " << comments    << endl;
+}
+
 void resetVariables(string & first, string & last, string & type, string & status,
                     string & street, string & city, string & state, string & tempZ,
                     int & zip, long & id, int & i, char & save, string & input)
@@ -730,6 +913,21 @@ void resetVariables(string & first, string & last, string & type, string & statu
     i   = 0;
     save = '\0';
     input = "";
+}
+
+void resetVariables2(string & tempMemberNumber, string & tempName, string & tempS, string & serviceName, string & tempF, string & serviceDate,
+                     float & serviceFee, int & serviceCode, string & input, char & save) 
+{
+    tempMemberNumber  = "";
+    tempName    = "";
+    tempS       = "";
+    serviceName = "";
+    tempF       = "";
+    serviceDate = "";
+    //comments    = "";
+    serviceCode = 0;
+    serviceFee =  0;
+    save = '\0';
 }
 
 void displayWelcomeMsg() {

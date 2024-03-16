@@ -1,6 +1,6 @@
 #include "service_vec.h"
 
-#define DELIM 
+//#define DELIM 
 
 using namespace std;
 

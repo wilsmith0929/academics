@@ -20,10 +20,11 @@ const int MAX = 101;
 
 //just some functions that might be useful for inputting, it does data validation
 int    add(int a, int b);
-double get_double();
+double read_double();
 int    read_int();
 long   read_long();
 char   read_char();
+float  read_float();
 bool   isNumeric(const string & str);
 string read_string();
 string removeWhitespace(const string & str);

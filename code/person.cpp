@@ -62,8 +62,8 @@ int Person::verify_person(const long & id) {
 
 int Person::display_member_provided_service(void)
 {
-	cout << "Member Number : " << ID << endl;
-	cout << "Member Name   : " << first_name << " " << last_name << endl;
+	cout << "\tMember Number : " << ID << endl;
+	cout << "\tMember Name   : " << first_name << " " << last_name << endl;
 	
 	return 0;
 }

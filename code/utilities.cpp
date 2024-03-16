@@ -47,9 +47,23 @@ char read_char() {
   return temp;
 }
 
-double get_double() {
+double read_double() {
   //temp double to be inputted
   double temp = 0;
+  cin >> temp;
+  while(!cin || temp <= 0) {
+    cin.clear();
+    cin.ignore(MAX, '\n');
+    cout << "\nInvalid input! Try again: ";
+    cin  >> temp;
+  }
+  cin.ignore(MAX, '\n');
+  return temp;
+}
+
+float read_float() {
+  //temp double to be inputted
+  float temp = 0;
   cin >> temp;
   while(!cin || temp <= 0) {
     cin.clear();

@@ -21,9 +21,9 @@ int Service::compare_ID(const int & id) {
 
 //Testing display function
 int Service::display_service(void) const {
-	cout << "Service Code : " << ID << endl;
-	cout << "Service Name : " << service_name << endl;
-	cout << "Service Fee  : " << service_fee << endl << endl;
+	cout << "\tService Code : " << ID << endl;
+	cout << "\tService Name : " << service_name << endl;
+	cout << "\tService Fee  : " << service_fee << endl;
 	return 0;
 }
 

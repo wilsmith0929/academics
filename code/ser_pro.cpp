@@ -78,7 +78,7 @@ int ServiceProvided::record_a_service(void)
 	member.create_person_string(member_info);
 	service.create_service_string(service_info);
 
-	sprintf(buffer, "%d|%s|%s|%s|%s|%s\n", ser_id, provider_date.c_str(), service_info, received_date, provider_info, member_info);
+	sprintf(buffer, "\n%d|%s|%s|%s|%s|%s", ser_id, provider_date.c_str(), service_info, received_date, provider_info, member_info);
 
 	outf.open(FILENAME, ios::app);
 	if (!outf)

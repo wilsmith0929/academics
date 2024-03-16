@@ -1,5 +1,12 @@
 ----------------------------- Project Information -----------------------------
 
+Group #7
+Azeezah Acar
+Eyosi Desta
+Kevin Phan
+William Smith
+Eddie Yefremov
+
 
 -------------------------------- Unit Testing ---------------------------------
 

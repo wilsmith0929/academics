@@ -1,10 +1,10 @@
 ----------------------------- Project Information -----------------------------
 
 Group #7
-Azeezah Acar
-Eyosi Desta
-Kevin Phan
-William Smith
+Azeezah Acar,
+Eyosi Desta,
+Kevin Phan,
+William Smith,
 Eddie Yefremov
 
 

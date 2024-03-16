@@ -10,8 +10,9 @@ The following set of instructions must be done in
     - "cmake .."
     - "cmake --build ."
 - To run the tests, run these commands in the following order:
-    - "cd tests"
-    - "./MyProjectTests"
+    - "cd tests" (Which puts you in .../cs-314-group-7-project/build/tests/)
+    - "./ChocAnTests"
+    - Optionally, run "./tests/ChocAnTests" in .../cs-314-group-7-project/build/.
 - If you want to re-compile, make sure you are in this directory
 (.../cs-314-group-7-project/build/):
     - "cmake --build ."

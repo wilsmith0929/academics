@@ -85,16 +85,7 @@ TEST(checkIfFileEmptyAndOpenable, nonexistentFile) {
     // Check if the file is not open
     EXPECT_EQ(checkIfFileEmptyAndOpenable(filename), 0) << "The file is open";
 }
-/*
-int checkIfFileEmptyAndOpenable(const string & filename) {
-  ifstream fileToTest(filename);
-  if (!fileToTest.is_open()) return 0;
-  fileToTest.seekg(0, ios::end);
-  if (fileToTest.tellg() == 0) return 1;
-  fileToTest.close();
-  return 2;
-}
-*/
+
 TEST(checkIfFileEmptyAndOpenableTest, emptyFile) {
     // Test file name
     string filename = "../text-documents/empty_test.txt";

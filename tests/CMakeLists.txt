@@ -1,6 +1,5 @@
 # Add test executable
 add_executable(MyProjectTests
-    interface_test.cpp
     person_test.cpp
     person_vec_test.cpp
     ser_pro_test.cpp

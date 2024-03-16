@@ -2,7 +2,7 @@
 #include "gtest/gtest.h" // Google Test Framework, must be included in the test file.
 
 // Test fixture for the Service class.
-TEST(compare_IDTest, checkIDEqualityEqualEqualToArgument) {
+TEST(compare_IDTest, checkIDEqualityEqualToArgument) {
     Service a_service(000111, "test_service", 10.0);
     EXPECT_EQ(a_service.compare_ID(000111), 0) << "ID not equal.";
 }

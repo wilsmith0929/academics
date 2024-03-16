@@ -44,13 +44,6 @@ TEST(displayTest, checkDisplayPopulated) {
 
 // --------------------------------------------------------------------------------------------
 
-/*
-int Service::get_service_code(int & to_receive)
-{
-	to_receive = ID;
-	return 0;
-}
-*/
 TEST(get_service_codeTest, checkGetServiceCodeEmpty) {
     Service a_service;
     int to_receive;
@@ -67,14 +60,6 @@ TEST(get_service_codeTest, checkGetServiceCodePopulated) {
 
 // --------------------------------------------------------------------------------------------
 
-/*
-int Service::create_service_string(char * buffer)
-{
-	sprintf(buffer, "%s|%.2f", service_name.c_str(), service_fee);
-
-	return 0;
-}
-*/
 
 TEST(create_service_stringTest, checkCreateServiceStringEmpty) {
     Service a_service;

@@ -23,7 +23,7 @@ TEST(serviceProvided, constructorWithArgs) {
 
 TEST(serviceProvidedInput, allInputsAndDisplay) {
     ServiceProvided sp;
-    int final_result = 0, result0 = 0, result1 = 0, result2 = 0, result3 = 0, result4 = 0;
+    int final_result = 1, result0 = 1, result1 = 1, result2 = 1, result3 = 1, result4 = 1;
     Person member(123456789, "Active", "MEMBER", "John", "Doe", "9343 Main St", "Anytown", "OR", 54321);
     Person provider(987654321, "Active", "PROVIDER", "Jane", "Doe", "3439 Main St", "Anytown", "CA", 12345);
     Service service(111222, "A Service", 100.00);

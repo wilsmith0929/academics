@@ -84,6 +84,7 @@ int ServiceProvided::record_a_service(void)
 	if (!outf)
 	{
 		fprintf(stderr, "The file \"%s\" was not found", FILENAME);
+		return 1;
 	}
 	else
 	{

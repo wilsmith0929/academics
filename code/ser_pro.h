@@ -2,7 +2,7 @@
 #include "service.h"
 
 #define BUF_SIZE 450
-#define FILENAME "provided_services.txt" 
+#define FILENAME "../text-documents/services_provided.txt" 
 
 class ServiceProvided
 {
